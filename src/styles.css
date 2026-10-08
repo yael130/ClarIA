@@ -1,3 +1,104 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Shared design tokens. Component templates should use these semantic utilities. */
+@theme inline {
+  --color-canvas: var(--ui-canvas);
+  --color-surface: var(--ui-surface);
+  --color-surface-muted: var(--ui-surface-muted);
+  --color-ink: var(--ui-ink);
+  --color-ink-soft: var(--ui-ink-soft);
+  --color-ink-subtle: var(--ui-ink-subtle);
+  --color-line: var(--ui-line);
+  --color-brand: var(--ui-brand);
+  --color-brand-strong: var(--ui-brand-strong);
+  --color-brand-wash: var(--ui-brand-wash);
+  --color-brand-ink: var(--ui-brand-ink);
+  --color-hero: var(--ui-hero);
+  --color-hero-ink: var(--ui-hero-ink);
+  --color-hero-muted: var(--ui-hero-muted);
+  --color-hero-accent: var(--ui-hero-accent);
+  --color-hero-button: var(--ui-hero-button);
+  --color-hero-button-ink: var(--ui-hero-button-ink);
+  --color-hero-node: var(--ui-hero-node);
+  --color-accent: var(--ui-accent);
+  --color-success: var(--ui-success);
+  --color-warning: var(--ui-warning);
+  --color-danger: var(--ui-danger);
+  --font-sans: 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+  --shadow-card: 0 10px 32px -24px rgb(24 49 40 / 24%);
+}
+
+:root {
+  color-scheme: light;
+  --ui-canvas: #f5f7f3;
+  --ui-surface: #fff;
+  --ui-surface-muted: #edf2ec;
+  --ui-ink: #183128;
+  --ui-ink-soft: #40574b;
+  --ui-ink-subtle: #566a5e;
+  --ui-line: #dce5dc;
+  --ui-brand: #2a6147;
+  --ui-brand-strong: #194631;
+  --ui-brand-wash: #e5efe5;
+  --ui-brand-ink: #fff;
+  --ui-hero: #194631;
+  --ui-hero-ink: #fff;
+  --ui-hero-muted: #e0eae3;
+  --ui-hero-accent: #c3dda8;
+  --ui-hero-button: #e1edcf;
+  --ui-hero-button-ink: #183d2d;
+  --ui-hero-node: #315844;
+  --ui-accent: #956c35;
+  --ui-success: #286548;
+  --ui-warning: #81520c;
+  --ui-danger: #a33434;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --ui-canvas: #111b17;
+  --ui-surface: #19251f;
+  --ui-surface-muted: #223129;
+  --ui-ink: #f0f5f1;
+  --ui-ink-soft: #d0ddd4;
+  --ui-ink-subtle: #b5c5ba;
+  --ui-line: #35463b;
+  --ui-brand: #b5d8bf;
+  --ui-brand-strong: #d4ead9;
+  --ui-brand-wash: #263a2e;
+  --ui-brand-ink: #14251b;
+  --ui-hero: #194631;
+  --ui-hero-ink: #fff;
+  --ui-hero-muted: #e0eae3;
+  --ui-hero-accent: #c3dda8;
+  --ui-hero-button: #e1edcf;
+  --ui-hero-button-ink: #183d2d;
+  --ui-hero-node: #315844;
+  --ui-accent: #e0be84;
+  --ui-success: #8fcea4;
+  --ui-warning: #e6bd71;
+  --ui-danger: #f0a0a0;
+}
+
+@layer base {
+  html { @apply min-h-full scroll-smooth bg-canvas; }
+  body { @apply m-0 min-h-screen bg-canvas font-sans text-ink antialiased; caret-color: var(--ui-brand); }
+  button, a { @apply touch-manipulation; }
+  button:not(:disabled), a[href], [tabindex]:not([tabindex='-1']) { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 3px solid var(--ui-brand); outline-offset: 3px; }
+  ::selection { background: var(--ui-brand-wash); color: var(--ui-ink); }
+  * { scrollbar-color: var(--ui-line) var(--ui-canvas); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition-property: none !important;
+  }
+
+  html { scroll-behavior: auto !important; }
+}
