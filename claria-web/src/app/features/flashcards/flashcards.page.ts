@@ -5,6 +5,9 @@ import { MockDataService } from '../../core/services/mock-data.service';
 
 const DEFAULT_CATEGORY = 'Personal';
 
+/** Distancia horizontal mínima (px) para que un deslizamiento cambie de tarjeta. */
+const SWIPE_THRESHOLD = 50;
+
 /** Sentido del último cambio de tarjeta; define desde qué lado entra la nueva. */
 type CardDirection = 'next' | 'prev' | null;
 
@@ -12,6 +15,7 @@ type CardDirection = 'next' | 'prev' | null;
 @Component({
   imports: [FormsModule],
   templateUrl: './flashcards.page.html',
+  host: { '(document:keydown)': 'onKeydown($event)' },
 })
 export class FlashcardsPage {
   private readonly data = inject(MockDataService);
@@ -28,6 +32,15 @@ export class FlashcardsPage {
   protected newAnswer = '';
   protected newCategory = DEFAULT_CATEGORY;
 
+  protected readonly masteredPercent = computed(
+    () => (this.masteredIds().length / this.cards().length) * 100,
+  );
+
+  /** Punto donde empezó el toque, para detectar el deslizamiento. */
+  private touchStart: { x: number; y: number } | null = null;
+  /** Evita que el clic que sigue a un deslizamiento voltee la tarjeta nueva. */
+  private ignoreNextClick = false;
+
   protected readonly card = computed(() => this.cards()[this.index() % this.cards().length]);
 
   protected isMastered(): boolean {
@@ -41,7 +54,40 @@ export class FlashcardsPage {
   }
 
   protected flip(): void {
+    if (this.ignoreNextClick) {
+      this.ignoreNextClick = false;
+      return;
+    }
     this.flipped.update((value) => !value);
+  }
+
+  /** Flechas ← → del teclado para cambiar de tarjeta (no mientras se escribe). */
+  protected onKeydown(event: KeyboardEvent): void {
+    if (this.showCreate() || isTypingTarget(event.target)) return;
+
+    if (event.key === 'ArrowRight') this.move(1);
+    else if (event.key === 'ArrowLeft') this.move(-1);
+  }
+
+  protected onTouchStart(event: TouchEvent): void {
+    const touch = event.changedTouches[0];
+    this.touchStart = { x: touch.clientX, y: touch.clientY };
+  }
+
+  /** Deslizar a la izquierda avanza; a la derecha regresa. */
+  protected onTouchEnd(event: TouchEvent): void {
+    if (!this.touchStart) return;
+
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - this.touchStart.x;
+    const dy = touch.clientY - this.touchStart.y;
+    this.touchStart = null;
+
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return;
+
+    this.ignoreNextClick = true;
+    setTimeout(() => (this.ignoreNextClick = false), 400);
+    this.move(dx < 0 ? 1 : -1);
   }
 
   protected markMastered(): void {
@@ -71,4 +117,12 @@ export class FlashcardsPage {
     this.newAnswer = '';
     this.newCategory = DEFAULT_CATEGORY;
   }
+}
+
+/** Indica si el evento viene de un campo donde el usuario está escribiendo. */
+function isTypingTarget(target: EventTarget | null): boolean {
+  return (
+    target instanceof HTMLElement &&
+    (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName))
+  );
 }

@@ -8,6 +8,7 @@
   <span>TARJETAS DOMINADAS　{{ masteredIds().length }} de {{ cards().length }}</span>
   <button class="btn" (click)="showCreate.set(true)">＋ Crear flashcard</button>
 </div>
+<div class="bar mastery-bar"><i [style.width.%]="masteredPercent()"></i></div>
 
 <div class="row-between card-meta">
   <span>Tarjeta {{ index() + 1 }} de {{ cards().length }}</span>
@@ -27,6 +28,8 @@
     [class.from-prev]="direction() === 'prev'"
     [attr.aria-label]="flipped() ? 'Mostrar pregunta' : 'Mostrar respuesta'"
     (click)="flip()"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
   >
     <span class="flashcard-inner">
       <span class="flashcard panel front" [attr.aria-hidden]="flipped()">
@@ -58,6 +61,8 @@
   </button>
   <button class="btn" (click)="move(1)">Siguiente　›</button>
 </div>
+
+<p class="flashcard-hint">Usa las flechas ← → del teclado o desliza la tarjeta para cambiar.</p>
 
 <!-- Modal para crear tarjeta -->
 @if (showCreate()) {
