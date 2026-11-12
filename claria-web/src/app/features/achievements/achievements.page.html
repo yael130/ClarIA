@@ -9,7 +9,7 @@
 
 <section class="grid two">
   @for (badge of badges; track badge.title) {
-    <article class="panel achievement">
+    <article class="panel achievement" [class.locked]="!badge.earned">
       <div class="badge">{{ badge.icon }}</div>
       <div>
         <div class="row-between">
@@ -17,7 +17,7 @@
           <span>{{ badge.date }}</span>
         </div>
         <p>{{ badge.text }}</p>
-        <b class="green">
+        <b [class.green]="badge.earned" [class.pending]="!badge.earned">
           {{ badge.earned ? '✓ Competencia certificada' : 'Por desbloquear al finalizar el curso' }}
         </b>
       </div>

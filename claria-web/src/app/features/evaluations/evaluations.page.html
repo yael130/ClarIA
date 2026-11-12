@@ -40,7 +40,7 @@
         [disabled]="done()"
         (click)="choice.set(i)"
       >
-        ◯　{{ option }}
+        {{ choice() === i ? '◉' : '◯' }}　{{ option }}
       </button>
     }
 
