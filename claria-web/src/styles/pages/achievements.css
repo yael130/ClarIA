@@ -32,3 +32,13 @@
   color: #61728b;
   font-size: 13px;
 }
+
+/* Insignias aún no obtenidas */
+.achievement.locked .badge {
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.achievement .pending {
+  color: var(--ink-subtle);
+}
