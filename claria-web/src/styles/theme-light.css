@@ -191,6 +191,32 @@ html.light .option.chosen {
   border-color: #0088a3;
 }
 
+html.light .option.correct,
+html.light .feedback.good {
+  background: #e7f8f1;
+  border-color: #0b9b6d;
+}
+
+html.light .option.wrong,
+html.light .feedback.bad {
+  background: #fdecee;
+  border-color: #d93a50;
+}
+
+html.light .ring-track {
+  stroke: var(--line);
+}
+
+html.light .ring-fill,
+html.light .result-title {
+  color: var(--brand);
+  stroke: var(--brand);
+}
+
+html.light .points-pop {
+  color: #0b9b6d;
+}
+
 /* --- Inicio ------------------------------------------------------------- */
 
 html.light .hero {
