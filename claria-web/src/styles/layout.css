@@ -279,6 +279,49 @@
   padding: 34px clamp(22px, 3vw, 54px);
 }
 
+/* --- Transición entre páginas ------------------------------------------ */
+
+/*
+ * El router usa la View Transitions API. Solo el área de contenido se anima
+ * (sube y aparece); la barra superior y el menú lateral quedan fijos.
+ */
+.main-content {
+  view-transition-name: page;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(page) {
+  animation: page-out 0.15s ease-in both;
+}
+
+::view-transition-new(page) {
+  animation: page-in 0.3s ease-out both;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page),
+  ::view-transition-new(page) {
+    animation: none;
+  }
+}
+
 /* --- Responsive --------------------------------------------------------- */
 
 @media (max-width: 1100px) {
