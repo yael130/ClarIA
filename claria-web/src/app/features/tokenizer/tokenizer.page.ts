@@ -18,6 +18,13 @@ const COST_PER_TOKEN = 0.00000015;
 
 /** Carácter que `decode` devuelve cuando un token contiene un carácter incompleto. */
 const REPLACEMENT_CHAR = '\uFFFD';
+/** Cantidad de colores que se alternan entre tokens consecutivos. */
+const TOKEN_TONES = 6;
+/** Retraso entre la aparición de un token y el siguiente. */
+const STAGGER_STEP_MS = 18;
+/** Tope de tokens escalonados, para que un texto largo no tarde en mostrarse. */
+const STAGGER_MAX_STEPS = 30;
+
 /** Límite de tokens por grupo, por si el propio texto contiene `REPLACEMENT_CHAR`. */
 const MAX_GROUP_SIZE = 8;
 
@@ -39,6 +46,12 @@ export class TokenizerPage {
   protected readonly textValue = signal(this.text);
   protected readonly tokenCount = signal(0);
   protected readonly pieces = signal<TokenPiece[]>([]);
+
+  /**
+   * Índice desde el que los fragmentos nuevos aparecen escalonados. Los que ya
+   * estaban en pantalla no se vuelven a animar al seguir escribiendo.
+   */
+  private staggerFrom = 0;
 
   protected readonly words = computed(() => {
     const value = this.textValue().trim();
@@ -68,6 +81,17 @@ export class TokenizerPage {
     void this.tokenize(value);
   }
 
+  /** Color alternado de cada fragmento, para distinguir dónde termina cada token. */
+  protected tone(index: number): number {
+    return index % TOKEN_TONES;
+  }
+
+  /** Retraso de aparición del fragmento; solo los recién agregados se escalonan. */
+  protected enterDelay(index: number): number {
+    const step = Math.min(Math.max(0, index - this.staggerFrom), STAGGER_MAX_STEPS);
+    return step * STAGGER_STEP_MS;
+  }
+
   protected clear(): void {
     this.onTextChange('');
   }
@@ -84,6 +108,7 @@ export class TokenizerPage {
     if (current !== this.updateId) return;
 
     const ids = encode(value, { disallowedSpecial: new Set() });
+    this.staggerFrom = this.pieces().length;
     this.tokenCount.set(ids.length);
     this.pieces.set(groupTokens(ids, decode));
   }

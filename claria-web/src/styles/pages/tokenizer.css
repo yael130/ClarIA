@@ -111,12 +111,58 @@
   gap: 5px;
   max-width: 100%;
   padding: 5px 8px;
-  background: #123248;
-  color: #61d8ee;
-  border: 1px solid #18415a;
+  background: var(--tone-bg);
+  color: var(--tone-ink);
+  border: 1px solid var(--tone-line);
   border-radius: 6px;
   font-family: monospace;
   overflow-wrap: anywhere;
+  animation: token-in 0.3s ease-out backwards;
+}
+
+/* Colores alternados: cada token consecutivo tiene un tono distinto. */
+.token-piece,
+.token-piece[data-tone='0'] {
+  --tone-bg: #123248;
+  --tone-ink: #61d8ee;
+  --tone-line: #18415a;
+}
+
+.token-piece[data-tone='1'] {
+  --tone-bg: #2a1f4d;
+  --tone-ink: #b9a3ff;
+  --tone-line: #3b2d6b;
+}
+
+.token-piece[data-tone='2'] {
+  --tone-bg: #0f3529;
+  --tone-ink: #5fe0a8;
+  --tone-line: #17493a;
+}
+
+.token-piece[data-tone='3'] {
+  --tone-bg: #3a2a10;
+  --tone-ink: #ffc65c;
+  --tone-line: #50391a;
+}
+
+.token-piece[data-tone='4'] {
+  --tone-bg: #3d1530;
+  --tone-ink: #ff8fc8;
+  --tone-line: #552142;
+}
+
+.token-piece[data-tone='5'] {
+  --tone-bg: #142a55;
+  --tone-ink: #8ab4ff;
+  --tone-line: #1e3b72;
+}
+
+@keyframes token-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.7);
+  }
 }
 
 .token-piece small {
@@ -197,5 +243,11 @@
 
   .metrics strong {
     font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .token-piece {
+    animation: none;
   }
 }
