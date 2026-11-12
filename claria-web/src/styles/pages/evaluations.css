@@ -42,6 +42,95 @@
   padding: 12px;
   background: #09233a;
   border-radius: 10px;
+  animation: feedback-in 0.3s ease-out both;
+}
+
+/* --- Retroalimentación animada al comprobar ----------------------------- */
+
+/* Respuesta correcta: brillo verde que late una vez. */
+.option.correct {
+  border-color: #10c98f;
+  background: #07291f;
+  animation: correct-glow 0.9s ease-out;
+}
+
+/* Respuesta incorrecta: la opción tiembla y se marca en rojo. */
+.option.wrong {
+  border-color: #f0566a;
+  background: #2a0d18;
+  animation: wrong-shake 0.45s ease-in-out;
+}
+
+.feedback.good {
+  border-left: 4px solid #10c98f;
+  background: #07291f;
+}
+
+.feedback.bad {
+  border-left: 4px solid #f0566a;
+  background: #2a0d18;
+}
+
+/* "+50" que sube y se desvanece junto al puntaje. */
+.score-total {
+  position: relative;
+}
+
+.points-pop {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  color: #10c98f;
+  font-weight: 800;
+  pointer-events: none;
+  animation: points-float 1.1s ease-out both;
+}
+
+@keyframes correct-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgb(16 201 143 / 55%);
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.015);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgb(16 201 143 / 0%);
+    transform: scale(1);
+  }
+}
+
+@keyframes wrong-shake {
+  20%,
+  60% {
+    transform: translateX(-7px);
+  }
+  40%,
+  80% {
+    transform: translateX(7px);
+  }
+}
+
+@keyframes feedback-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes points-float {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.8);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-26px) scale(1);
+  }
 }
 
 .quiz-actions {
@@ -58,6 +147,112 @@
   margin-top: 20px;
 }
 
+/* --- Animación de resultado final --------------------------------------- */
+
+.result-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 150px;
+  margin: 18px auto 6px;
+}
+
+.result-ring svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.result-ring circle {
+  fill: none;
+  stroke-width: 9;
+}
+
+.ring-track {
+  stroke: #1a263d;
+}
+
+/* El anillo se dibuja desde 0 hasta el porcentaje obtenido. */
+.ring-fill {
+  stroke: #00cbed;
+  stroke-linecap: round;
+  stroke-dasharray: var(--percent) 100;
+  animation: ring-draw 1.2s 0.2s cubic-bezier(0.3, 0.7, 0.3, 1) both;
+}
+
+.result-icon {
+  font-size: 54px;
+  animation: icon-pop 0.6s 0.9s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+.result-title {
+  margin: 8px 0 0;
+  color: #00cbed;
+  font-size: 22px;
+  animation: feedback-in 0.4s 1.1s ease-out both;
+}
+
+.sparkle {
+  position: absolute;
+  color: #ffc53d;
+  font-style: normal;
+  animation: sparkle-twinkle 1.8s ease-in-out infinite both;
+}
+
+.sparkle.s1 {
+  top: 4px;
+  left: 8px;
+  font-size: 20px;
+  animation-delay: 1.2s;
+}
+
+.sparkle.s2 {
+  top: 18px;
+  right: -2px;
+  font-size: 16px;
+  animation-delay: 1.5s;
+}
+
+.sparkle.s3 {
+  right: 6px;
+  bottom: 4px;
+  font-size: 22px;
+  animation-delay: 1.8s;
+}
+
+.sparkle.s4 {
+  bottom: 16px;
+  left: -4px;
+  font-size: 15px;
+  animation-delay: 2.1s;
+}
+
+@keyframes ring-draw {
+  from {
+    stroke-dasharray: 0 100;
+  }
+}
+
+@keyframes icon-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.2) rotate(-25deg);
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(90deg);
+  }
+}
+
 /* --- Responsive --------------------------------------------------------- */
 
 @media (max-width: 760px) {
@@ -67,5 +262,23 @@
 
   .option {
     line-height: 1.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option.correct,
+  .option.wrong,
+  .feedback,
+  .points-pop,
+  .ring-fill,
+  .result-icon,
+  .result-title,
+  .sparkle {
+    animation: none;
+  }
+
+  .points-pop,
+  .sparkle {
+    display: none;
   }
 }

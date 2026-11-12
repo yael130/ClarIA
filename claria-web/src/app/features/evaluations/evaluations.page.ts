@@ -19,10 +19,28 @@ export class EvaluationsPage {
   protected readonly choice = signal<number | null>(null);
   protected readonly score = signal(0);
   protected readonly feedback = signal('');
+  /** Resultado del caso comprobado; null mientras no se comprueba. */
+  protected readonly lastCorrect = signal<boolean | null>(null);
   protected readonly done = signal(false);
   protected readonly completed = signal(false);
 
   protected readonly question = computed(() => this.questions[this.index()]);
+  protected readonly pointsPerCorrect = POINTS_PER_CORRECT;
+
+  /** Porcentaje obtenido, usado por el anillo de resultado final. */
+  protected readonly percent = computed(() => Math.round((this.score() / this.maxScore) * 100));
+
+  protected readonly resultIcon = computed(() => {
+    const percent = this.percent();
+    if (percent === 100) return '🏆';
+    return percent >= 50 ? '🌟' : '💪';
+  });
+
+  protected readonly resultTitle = computed(() => {
+    const percent = this.percent();
+    if (percent === 100) return '¡Criterio impecable!';
+    return percent >= 50 ? '¡Buen trabajo!' : '¡Sigue practicando!';
+  });
 
   /** Comprueba la respuesta elegida o, si ya se comprobó, avanza al siguiente caso. */
   protected check(): void {
@@ -36,6 +54,7 @@ export class EvaluationsPage {
 
     const correct = selected === this.question().correctIndex;
     if (correct) this.score.update((current) => current + POINTS_PER_CORRECT);
+    this.lastCorrect.set(correct);
 
     this.feedback.set(
       correct
@@ -65,5 +84,6 @@ export class EvaluationsPage {
     this.choice.set(null);
     this.done.set(false);
     this.feedback.set('');
+    this.lastCorrect.set(null);
   }
 }

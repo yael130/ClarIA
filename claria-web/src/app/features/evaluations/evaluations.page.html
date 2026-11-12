@@ -11,6 +11,21 @@
   <!-- Resultado final -->
   <section class="quiz panel result-panel">
     <div class="eyebrow">EVALUACIÓN COMPLETADA</div>
+
+    <!-- Anillo que se dibuja hasta el porcentaje obtenido, con destellos alrededor -->
+    <div class="result-ring" [style.--percent]="percent()" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <circle class="ring-track" cx="60" cy="60" r="52" pathLength="100" />
+        <circle class="ring-fill" cx="60" cy="60" r="52" pathLength="100" />
+      </svg>
+      <span class="result-icon">{{ resultIcon() }}</span>
+      <i class="sparkle s1">✦</i>
+      <i class="sparkle s2">✧</i>
+      <i class="sparkle s3">✦</i>
+      <i class="sparkle s4">✧</i>
+    </div>
+
+    <h3 class="result-title">{{ resultTitle() }}</h3>
     <h2>Resultado: {{ score() }} / {{ maxScore }} puntos</h2>
     <p>Has terminado los casos de práctica. Puedes volver a intentarlos para repasar.</p>
     <button class="btn primary" (click)="restart()">Intentar de nuevo</button>
@@ -20,7 +35,12 @@
   <section class="quiz panel">
     <div class="row-between">
       <span>Caso {{ index() + 1 }} de {{ questions.length }}</span>
-      <b>Puntaje acumulado: {{ score() }}</b>
+      <b class="score-total">
+        Puntaje acumulado: {{ score() }}
+        @if (lastCorrect()) {
+          <span class="points-pop" aria-hidden="true">+{{ pointsPerCorrect }}</span>
+        }
+      </b>
     </div>
     <hr />
 
@@ -36,6 +56,8 @@
       <button
         class="option"
         [class.chosen]="choice() === i"
+        [class.correct]="done() && choice() === i && lastCorrect()"
+        [class.wrong]="done() && choice() === i && lastCorrect() === false"
         [attr.aria-pressed]="choice() === i"
         [disabled]="done()"
         (click)="choice.set(i)"
@@ -45,7 +67,12 @@
     }
 
     @if (feedback()) {
-      <p class="feedback" role="status">{{ feedback() }}</p>
+      <p
+        class="feedback"
+        role="status"
+        [class.good]="lastCorrect()"
+        [class.bad]="lastCorrect() === false"
+      >{{ feedback() }}</p>
     }
 
     <div class="row-between quiz-actions">
