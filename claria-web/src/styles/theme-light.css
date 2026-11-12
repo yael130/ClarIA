@@ -104,6 +104,14 @@ html.light .achievement {
   color: var(--ink);
 }
 
+html.light .course:hover,
+html.light .article:hover,
+html.light .achievement:hover,
+html.light .challenge:hover {
+  border-color: #9fd3e3;
+  box-shadow: 0 14px 30px rgb(23 36 56 / 12%);
+}
+
 html.light .route-card,
 html.light .context,
 html.light .key,
