@@ -8,8 +8,8 @@
 </div>
 
 <section class="grid two">
-  @for (badge of badges; track badge.title) {
-    <article class="panel achievement" [class.locked]="!badge.earned">
+  @for (badge of badges; track badge.title; let i = $index) {
+    <article class="panel achievement" [class.locked]="!badge.earned" [style.--order]="i">
       <div class="badge">{{ badge.icon }}</div>
       <div>
         <div class="row-between">

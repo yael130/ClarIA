@@ -7,9 +7,13 @@
   align-items: flex-start;
   gap: 18px;
   padding: 25px;
+  /* Las tarjetas entran una tras otra. `backwards` deja libre el hover al terminar. */
+  animation: achievement-in 0.45s calc(var(--order, 0) * 90ms) ease-out backwards;
 }
 
 .badge {
+  position: relative;
+  overflow: hidden;
   display: grid;
   place-items: center;
   flex: none;
@@ -33,12 +37,80 @@
   font-size: 13px;
 }
 
-/* Insignias aún no obtenidas */
+/* --- Insignias obtenidas: se "desbloquean" y brillan ------------------ */
+
+.achievement:not(.locked) .badge {
+  animation:
+    badge-unlock 0.7s calc(var(--order, 0) * 90ms + 0.3s) cubic-bezier(0.3, 1.6, 0.5, 1) backwards,
+    badge-glow 1.2s calc(var(--order, 0) * 90ms + 0.6s) ease-out;
+}
+
+/* Destello que cruza la insignia cada pocos segundos. */
+.achievement:not(.locked) .badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 55%) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: badge-shine 4s calc(var(--order, 0) * 400ms + 1.2s) ease-in-out infinite;
+}
+
+/* --- Insignias aún no obtenidas ---------------------------------------- */
+
 .achievement.locked .badge {
   filter: grayscale(1);
   opacity: 0.45;
 }
 
+.achievement.locked .badge::after {
+  content: '🔒';
+  position: absolute;
+  right: 2px;
+  bottom: 0;
+  font-size: 15px;
+}
+
 .achievement .pending {
   color: var(--ink-subtle);
+}
+
+@keyframes achievement-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes badge-unlock {
+  from {
+    opacity: 0;
+    transform: scale(0.3) rotate(-30deg);
+  }
+}
+
+@keyframes badge-glow {
+  from {
+    box-shadow: 0 0 0 0 rgb(0 203 237 / 60%);
+  }
+  to {
+    box-shadow: 0 0 0 16px rgb(0 203 237 / 0%);
+  }
+}
+
+@keyframes badge-shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  30%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement,
+  .achievement:not(.locked) .badge,
+  .achievement:not(.locked) .badge::after {
+    animation: none;
+  }
 }
