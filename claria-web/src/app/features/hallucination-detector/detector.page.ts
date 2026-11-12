@@ -27,7 +27,7 @@ const EXAMPLE_TEXT =
   templateUrl: './detector.page.html',
 })
 export class DetectorPage {
-  protected text = INITIAL_TEXT;
+  protected readonly text = signal(INITIAL_TEXT);
 
   protected readonly criteria: RubricCriterion[] = [
     {
@@ -55,7 +55,7 @@ export class DetectorPage {
   protected readonly score = signal(40);
 
   protected readonly flags = computed(() =>
-    RISK_PATTERNS.filter((pattern) => this.text.toLowerCase().includes(pattern)),
+    RISK_PATTERNS.filter((pattern) => this.text().toLowerCase().includes(pattern)),
   );
 
   protected readonly verdict = computed(() => {
@@ -66,11 +66,11 @@ export class DetectorPage {
   });
 
   protected loadExample(): void {
-    this.text = EXAMPLE_TEXT;
+    this.text.set(EXAMPLE_TEXT);
   }
 
   protected clearText(): void {
-    this.text = '';
+    this.text.set('');
   }
 
   protected updateScore(): void {
