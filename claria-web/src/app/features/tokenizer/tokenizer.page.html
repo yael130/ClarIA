@@ -62,6 +62,8 @@
         @for (piece of pieces(); track $index) {
           <span
             class="token-piece"
+            [attr.data-tone]="tone($index)"
+            [style.animation-delay.ms]="enterDelay($index)"
             [title]="(piece.ids.length > 1 ? 'Token IDs: ' : 'Token ID: ') + piece.ids.join(', ')"
           >
             <small>{{ piece.ids.join(' · ') }}</small><b>{{ piece.text }}</b>

@@ -288,10 +288,41 @@ html.light .encoding-badge {
   background: #dceff7;
 }
 
-html.light .token-piece {
-  background: #e6f3fa;
-  color: #173650;
-  border-color: #c7e1ef;
+html.light .token-piece,
+html.light .token-piece[data-tone='0'] {
+  --tone-bg: #e0f4fa;
+  --tone-ink: #0b5f75;
+  --tone-line: #bfe6f1;
+}
+
+html.light .token-piece[data-tone='1'] {
+  --tone-bg: #eee8ff;
+  --tone-ink: #5b3fc4;
+  --tone-line: #d9cdfb;
+}
+
+html.light .token-piece[data-tone='2'] {
+  --tone-bg: #e2f6ed;
+  --tone-ink: #14724f;
+  --tone-line: #c2ebd8;
+}
+
+html.light .token-piece[data-tone='3'] {
+  --tone-bg: #fdf1db;
+  --tone-ink: #8a5a00;
+  --tone-line: #f3dcae;
+}
+
+html.light .token-piece[data-tone='4'] {
+  --tone-bg: #fde7f2;
+  --tone-ink: #a3266a;
+  --tone-line: #f6c8df;
+}
+
+html.light .token-piece[data-tone='5'] {
+  --tone-bg: #e5eeff;
+  --tone-ink: #2350b3;
+  --tone-line: #c8d8fb;
 }
 
 html.light .token-empty {
