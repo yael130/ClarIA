@@ -15,7 +15,7 @@
 
 <!-- Métricas -->
 <div class="metrics">
-  <article class="panel"><small>Tokens</small><strong>{{ tokens().length }}</strong></article>
+  <article class="panel"><small>Tokens</small><strong>{{ tokenCount() }}</strong></article>
   <article class="panel"><small>Caracteres</small><strong>{{ textValue().length }}</strong></article>
   <article class="panel"><small>Palabras</small><strong>{{ words() }}</strong></article>
   <article class="panel"><small>Tokens / palabra</small><strong>{{ ratio() }}</strong></article>
@@ -54,14 +54,17 @@
   <article class="panel editor token-results">
     <div class="row-between">
       <b>Tokens generados por el encoder</b>
-      <span>{{ tokens().length }} tokens</span>
+      <span>{{ tokenCount() }} tokens</span>
     </div>
 
-    @if (tokens().length) {
+    @if (tokenCount()) {
       <div class="token-cloud" aria-live="polite">
-        @for (token of tokens(); track $index) {
-          <span class="token-piece" [title]="'Token ID: ' + token.id">
-            <small>{{ token.id }}</small><b>{{ token.text }}</b>
+        @for (piece of pieces(); track $index) {
+          <span
+            class="token-piece"
+            [title]="(piece.ids.length > 1 ? 'Token IDs: ' : 'Token ID: ') + piece.ids.join(', ')"
+          >
+            <small>{{ piece.ids.join(' · ') }}</small><b>{{ piece.text }}</b>
           </span>
         }
       </div>
