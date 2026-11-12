@@ -1,0 +1,9 @@
+# Archivos de bloqueo de LibreOffice
+.~lock.*#
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Configuración local de herramientas
+*.local.json

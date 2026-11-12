@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Página: Tokenizador
+   ========================================================================== */
+
+.tokenizer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  background: #0b172a;
+  border: 1px solid #1b2942;
+  border-radius: 12px;
+  color: #aab8cc;
+  font-size: 13px;
+}
+
+.tokenizer-toolbar select {
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  background: transparent;
+  border: 0;
+}
+
+.encoding-badge {
+  padding: 5px 9px;
+  border-radius: 7px;
+  background: #0d263b;
+  color: #77dff1;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
+/* --- Métricas ----------------------------------------------------------- */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.metrics .panel {
+  min-width: 0;
+  padding: 16px;
+}
+
+.metrics small,
+.metrics strong {
+  display: block;
+}
+
+.metrics small {
+  color: #8192aa;
+  font-size: 12px;
+}
+
+.metrics strong {
+  margin-top: 8px;
+  color: #00cbed;
+  font-size: 25px;
+}
+
+.metrics .panel strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Editor y resultados ------------------------------------------------ */
+
+.tokenizer-grid {
+  align-items: stretch;
+}
+
+.tokenizer-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  color: #899bb4;
+  font-size: 12px;
+}
+
+.token-results {
+  min-width: 0;
+}
+
+.token-results > small {
+  color: #899bb4;
+  line-height: 1.5;
+}
+
+.token-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+  min-height: 185px;
+  max-height: 310px;
+  margin: 20px 0;
+  padding: 16px;
+  overflow: auto;
+  background: #070e1e;
+  border: 1px solid #1a2944;
+  border-radius: 14px;
+}
+
+.token-piece {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 5px 8px;
+  background: #123248;
+  color: #61d8ee;
+  border: 1px solid #18415a;
+  border-radius: 6px;
+  font-family: monospace;
+  overflow-wrap: anywhere;
+}
+
+.token-piece small {
+  opacity: 0.55;
+  font:
+    10px ui-monospace,
+    monospace;
+}
+
+.token-piece b {
+  font:
+    500 12px ui-monospace,
+    monospace;
+  white-space: pre-wrap;
+}
+
+.token-empty {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  margin: 18px 0;
+  padding: 18px;
+  background: #070e1e;
+  border: 1px dashed #33435c;
+  border-radius: 14px;
+  color: #899bb4;
+  text-align: center;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .metrics .panel {
+    padding: 13px;
+  }
+
+  .metrics small {
+    font-size: 11px;
+  }
+
+  .metrics strong {
+    font-size: 21px;
+  }
+
+  .tokenizer-toolbar {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .tokenizer-toolbar span {
+    flex-basis: 100%;
+  }
+
+  .tokenizer-foot {
+    display: grid;
+  }
+
+  .token-cloud {
+    max-height: 240px;
+  }
+}
+
+@media (max-width: 390px) {
+  .metrics .panel {
+    padding: 10px;
+  }
+
+  .metrics strong {
+    font-size: 18px;
+  }
+}

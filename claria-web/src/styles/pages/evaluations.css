@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Página: Evaluaciones
+   ========================================================================== */
+
+.quiz {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 36px;
+}
+
+.quiz > b,
+.quiz .row-between b {
+  color: #00cbed;
+}
+
+.quiz h2 {
+  margin: 26px 0;
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 17px;
+  background: #080f20;
+  border: 1px solid #1c2942;
+  border-radius: 14px;
+  color: #d3dceb;
+  text-align: left;
+  cursor: pointer;
+}
+
+.option:hover,
+.option.chosen {
+  border-color: #00cbed;
+  background: #092238;
+}
+
+.feedback {
+  padding: 12px;
+  background: #09233a;
+  border-radius: 10px;
+}
+
+.quiz-actions {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid #1a263d;
+}
+
+.result-panel {
+  text-align: center;
+}
+
+.result-panel .btn {
+  margin-top: 20px;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .quiz {
+    padding: 18px;
+  }
+
+  .option {
+    line-height: 1.5;
+  }
+}

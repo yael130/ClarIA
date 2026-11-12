@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Página: Cursos
+   ========================================================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.courses {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  min-height: 405px;
+  padding: 28px;
+}
+
+.course h2 {
+  margin: 20px 0;
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+.course p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.stats {
+  margin-top: auto;
+  color: #8495ad;
+  font-size: 14px;
+}
+
+.stats strong {
+  float: right;
+  color: #dce5f3;
+}
+
+.course hr {
+  margin: 20px 0;
+}
+
+.course .row-between {
+  color: #71839c;
+  font-size: 13px;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .courses {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .courses {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin: 0 0 18px;
+    overflow-x: auto;
+  }
+
+  .filters .chip {
+    flex: 0 0 auto;
+  }
+}

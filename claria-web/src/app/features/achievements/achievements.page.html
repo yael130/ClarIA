@@ -1,0 +1,26 @@
+<div class="page-head">
+  <div class="eyebrow">♙ INSIGNIAS Y COMPETENCIAS</div>
+  <h1>Mis Logros de Criterio</h1>
+  <p>
+    Insignias ganadas al contrastar fuentes, detectar alucinaciones y mantener tu voz crítica al
+    estudiar con IA.
+  </p>
+</div>
+
+<section class="grid two">
+  @for (badge of badges; track badge.title) {
+    <article class="panel achievement">
+      <div class="badge">{{ badge.icon }}</div>
+      <div>
+        <div class="row-between">
+          <h2>{{ badge.title }}</h2>
+          <span>{{ badge.date }}</span>
+        </div>
+        <p>{{ badge.text }}</p>
+        <b class="green">
+          {{ badge.earned ? '✓ Competencia certificada' : 'Por desbloquear al finalizar el curso' }}
+        </b>
+      </div>
+    </article>
+  }
+</section>

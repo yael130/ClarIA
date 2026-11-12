@@ -1,0 +1,44 @@
+<div class="page-head">
+  <div class="eyebrow">▤ BIBLIOTECA DE CRITERIO</div>
+  <h1>Artículos y Guías de Estudio</h1>
+  <p>
+    Lecturas curadas sobre pensamiento crítico, verificación bibliográfica y preservación de la voz
+    personal al investigar con IA.
+  </p>
+</div>
+
+<section class="grid articles">
+  @for (article of articles; track article.id) {
+    <article class="panel article">
+      <div class="meta">
+        <b>{{ article.category }}</b> · ◷ {{ article.readMinutes }} min · {{ article.date }}
+      </div>
+      <h2>{{ article.title }}</h2>
+      <p>{{ article.description }}</p>
+      <div class="key"><b>Punto clave:</b> {{ article.keyPoint }}</div>
+
+      <hr />
+
+      <div class="row-between">
+        <span>{{ article.author }}</span>
+        <button class="text-button" (click)="open(article.title, article.description)">
+          Leer artículo →
+        </button>
+      </div>
+    </article>
+  }
+</section>
+
+<!-- Modal de lectura -->
+@if (opened(); as reading) {
+  <div class="modal-backdrop" (click)="close()">
+    <section class="modal panel" (click)="$event.stopPropagation()">
+      <button class="close" (click)="close()">×</button>
+      <div class="eyebrow">LECTURA DE DEMOSTRACIÓN</div>
+      <h2>{{ reading.title }}</h2>
+      <p>{{ reading.body }}</p>
+      <p>Este contenido es de prueba y podrá conectarse a artículos reales más adelante.</p>
+      <button class="btn primary" (click)="close()">Cerrar</button>
+    </section>
+  </div>
+}

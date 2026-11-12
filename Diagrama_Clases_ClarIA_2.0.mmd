@@ -1,0 +1,104 @@
+classDiagram
+ direction LR
+
+ namespace Contenido_y_progreso {
+  class Curso {
+   +UUID id «PK»
+   +texto title
+   +boolean is_published
+  }
+  class "Lección" as Leccion {
+   +UUID id «PK»
+   +UUID course_id «FK»
+   +texto title
+   +texto type
+  }
+  class "ProgresoLección" as ProgresoLeccion {
+   +UUID user_id_lesson_id «PK/FK»
+   +estado status
+   +entero time_spent_s
+   +fecha completed_at
+  }
+  class Perfil {
+   +UUID id «PK»
+   +texto full_name
+   +fecha birth_date
+   +UUID role_id «FK»
+  }
+ }
+
+ namespace Evaluacion_y_practica {
+  class Quiz {
+   +UUID id «PK»
+   +UUID lesson_id_o_course_id «FK»
+   +entero passing_score
+  }
+  class Pregunta {
+   +UUID id «PK»
+   +UUID quiz_id «FK»
+   +texto type
+   +texto statement
+  }
+  class "Opción" as Opcion {
+   +UUID id «PK»
+   +UUID question_id «FK»
+   +entero correct_order
+  }
+  class IntentoQuiz {
+   +UUID id «PK»
+   +UUID user_id_quiz_id «FK»
+   +decimal score
+   +boolean passed
+  }
+  class Escenario {
+   +UUID id «PK»
+   +texto title
+   +texto goal
+  }
+  class IntentoPrompt {
+   +UUID id «PK»
+   +UUID user_id_scenario_id «FK»
+   +entero score
+   +entero attempt_no
+  }
+ }
+
+ namespace Encuestas_y_logros {
+  class Encuesta {
+   +UUID id «PK»
+   +pre_post type
+   +texto title
+  }
+  class RespuestaEncuesta {
+   +UUID id «PK»
+   +UUID user_id_survey_id «FK»
+   +fecha submitted_at
+  }
+  class Logro {
+   +UUID id «PK»
+   +texto name
+  }
+  class LogroUsuario {
+   +UUID user_id_achievement_id «PK/FK»
+   +fecha earned_at
+  }
+ }
+
+ Curso "1" --> "0..*" Leccion : contiene
+ Leccion "1" --> "0..*" ProgresoLeccion : registra
+ Perfil "1" --> "0..*" ProgresoLeccion : acumula
+ Quiz "1" --> "0..*" Pregunta : incluye
+ Pregunta "1" --> "0..*" Opcion : ofrece
+ Quiz "1" --> "0..*" IntentoQuiz : recibe
+ Perfil "1" --> "0..*" IntentoQuiz : realiza
+ Escenario "1" --> "0..*" IntentoPrompt : recibe
+ Perfil "1" --> "0..*" IntentoPrompt : realiza
+ Encuesta "1" --> "0..*" RespuestaEncuesta : recibe
+ Perfil "1" --> "0..*" RespuestaEncuesta : responde
+ Logro "1" --> "0..*" LogroUsuario : se_asigna
+ Perfil "1" --> "0..*" LogroUsuario : obtiene
+
+ note for IntentoPrompt "Solo se conserva el puntaje del intento; no se almacena el texto del prompt."
+
+ classDef base fill:#EAF3F5,stroke:#18344F,color:#253746,stroke-width:1.5px
+ class Curso,Leccion,ProgresoLeccion,Perfil,Quiz,Pregunta,Opcion,IntentoQuiz,Escenario,IntentoPrompt,Encuesta,RespuestaEncuesta,Logro,LogroUsuario base

@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Página: Detector de alucinaciones
+   ========================================================================== */
+
+.detector {
+  grid-template-columns: 1.2fr 0.8fr;
+  margin-top: 20px;
+}
+
+.warning {
+  margin: 8px 0;
+  padding: 12px;
+  background: #261527;
+  border: 1px solid #562138;
+  border-radius: 10px;
+  color: #f58da5;
+  font-size: 14px;
+}
+
+/* --- Rúbrica ------------------------------------------------------------ */
+
+.rubric {
+  padding: 24px;
+}
+
+.rubric h2 {
+  font-size: 18px;
+}
+
+.rubric h2 span {
+  float: right;
+  color: #00cbed;
+}
+
+.rubric label {
+  display: block;
+  padding: 15px 0;
+  border-bottom: 1px solid #1c2840;
+  color: #ccd5e3;
+}
+
+.rubric label b {
+  float: right;
+  color: #00cbed;
+}
+
+.rubric label input {
+  display: block;
+  width: 100%;
+  accent-color: #00cbed;
+}
+
+.rubric label small {
+  display: block;
+  color: #71839c;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .detector {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detector .rubric h2 span {
+    display: block;
+    float: none;
+    margin-top: 8px;
+  }
+}

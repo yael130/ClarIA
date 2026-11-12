@@ -1,0 +1,29 @@
+/* ==========================================================================
+   ClarIA · Hoja de estilos global
+   El orden de importación importa: cada capa puede sobrescribir a la anterior.
+   ========================================================================== */
+
+@import 'tailwindcss';
+
+/* 1. Fundamentos */
+@import './styles/tokens.css';
+@import './styles/base.css';
+
+/* 2. Shell de la aplicación (barra superior y menú lateral) */
+@import './styles/layout.css';
+
+/* 3. Componentes compartidos */
+@import './styles/components.css';
+
+/* 4. Estilos por página */
+@import './styles/pages/home.css';
+@import './styles/pages/courses.css';
+@import './styles/pages/evaluations.css';
+@import './styles/pages/achievements.css';
+@import './styles/pages/flashcards.css';
+@import './styles/pages/articles.css';
+@import './styles/pages/tokenizer.css';
+@import './styles/pages/detector.css';
+
+/* 5. Tema claro (siempre al final) */
+@import './styles/theme-light.css';

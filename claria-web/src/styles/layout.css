@@ -1,0 +1,462 @@
+/* ==========================================================================
+   Layout de la aplicación (shell)
+   Barra superior, menú lateral y área de contenido.
+   ========================================================================== */
+
+.app-shell {
+  min-height: 100vh;
+  background: #050a15;
+  color: #edf3ff;
+}
+
+/* --- Barra superior ----------------------------------------------------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 82px;
+  padding: 0 2.2%;
+  background: #050a15;
+  border-bottom: 1px solid #121c2d;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 250px;
+  color: #f4f7ff;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  object-fit: cover;
+  background: #000;
+}
+
+.brand span {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand b {
+  font-size: 23px;
+  line-height: 1.1;
+}
+
+.brand small {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #8495ac;
+}
+
+.top-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.top-links a {
+  padding: 10px 0;
+  color: #b9c5d6;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+}
+
+.top-links a:hover,
+.top-links .nav-active {
+  color: #02c9ed;
+  border-color: #02c9ed;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.audit-btn,
+.icon-btn {
+  padding: 10px 14px;
+  border: 1px solid #1c2b43;
+  border-radius: 14px;
+  background: #101b30;
+  color: #dce5f3;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.audit-btn {
+  white-space: nowrap;
+  color: #04d0ef;
+  border-color: #064b60;
+  background: #06202b;
+}
+
+.icon-btn {
+  padding: 7px 12px;
+  font-size: 20px;
+}
+
+.theme {
+  color: #fbbf24;
+}
+
+.top-actions .avatar {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  padding: 11px;
+  border: 0;
+  border-radius: 50%;
+  background: #078fc7;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.student {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.student small {
+  color: #f5b000;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  gap: 10px;
+  width: 180px;
+  padding: 14px;
+  background: #111d33;
+  border: 1px solid #24334b;
+  border-radius: 12px;
+}
+
+.profile-menu a,
+.profile-menu button {
+  color: #dbe4f4;
+  text-align: left;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* --- Menú lateral ------------------------------------------------------- */
+
+.layout {
+  display: flex;
+  max-width: 1600px;
+  margin: auto;
+}
+
+.sidebar {
+  position: sticky;
+  top: 82px;
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  flex: 0 0 270px;
+  height: calc(100vh - 82px);
+  padding: 25px 16px;
+  border-right: 1px solid #121c2d;
+  transition: 0.2s;
+}
+
+.collapse {
+  align-self: flex-end;
+  margin-bottom: 18px;
+  color: #8293aa;
+  font-size: 22px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.side-group {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 25px;
+}
+
+.side-group > small {
+  padding: 0 12px 6px;
+  color: #60738c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.side-group a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 13px;
+  border-radius: 14px;
+  color: #92a3ba;
+  font-size: 17px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.side-group a:hover,
+.side-group .side-active {
+  background: #0d2441;
+  color: #00cbed;
+}
+
+.side-group .side-active {
+  box-shadow: inset 3px 0 #00cbed;
+}
+
+.sidebar-tip {
+  margin-top: auto;
+  padding: 16px;
+  background: #0c172b;
+  border: 1px solid #192844;
+  border-radius: 18px;
+  color: #c7d1e1;
+  font-size: 14px;
+}
+
+.sidebar-tip p {
+  margin: 8px 0 0;
+  color: #8394ad;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Menú lateral contraído */
+.sidebar-collapsed .sidebar {
+  width: 70px;
+  flex-basis: 70px;
+  padding-inline: 9px;
+}
+
+.sidebar-collapsed .side-group span,
+.sidebar-collapsed .side-group small,
+.sidebar-collapsed .sidebar-tip {
+  display: none;
+}
+
+.sidebar-collapsed .side-group a {
+  justify-content: center;
+}
+
+.sidebar-collapsed .collapse {
+  align-self: center;
+  transform: rotate(180deg);
+}
+
+/* --- Contenido ---------------------------------------------------------- */
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  max-width: 1240px;
+  margin: auto;
+  padding: 34px clamp(22px, 3vw, 54px);
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .audit-btn {
+    display: none;
+  }
+}
+
+/* Barra superior compacta: evita que los enlaces se partan en dos líneas. */
+@media (min-width: 761px) and (max-width: 1360px) {
+  .topbar {
+    gap: 12px;
+    padding-inline: 16px;
+  }
+
+  .brand {
+    min-width: 170px;
+    gap: 9px;
+  }
+
+  .top-links {
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .top-links a {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  /* Si los enlaces no caben, se desplazan en vez de encimarse con los botones. */
+  .top-links {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .sidebar {
+    width: 215px;
+    flex-basis: 215px;
+  }
+
+  .main-content {
+    padding-inline: 24px;
+  }
+}
+
+/*
+ * Tablet y móvil: se oculta el nombre y la racha junto al avatar, pero no el
+ * contenedor, porque el menú de perfil vive dentro de `.student`.
+ */
+@media (max-width: 1100px) {
+  .top-actions {
+    position: relative;
+  }
+
+  .student {
+    display: contents;
+  }
+
+  .student > b,
+  .student > small {
+    display: none;
+  }
+
+  .profile-menu {
+    top: calc(100% + 10px);
+  }
+}
+
+/* En móvil el menú lateral se convierte en una barra horizontal desplazable. */
+@media (max-width: 760px) {
+  .topbar {
+    flex-wrap: nowrap;
+    gap: 4px;
+    width: 100%;
+    height: 64px;
+    min-height: 64px;
+    padding: 8px 12px;
+    overflow: visible;
+  }
+
+  .top-links {
+    display: none;
+  }
+
+  .brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .top-actions {
+    flex: 0 0 auto;
+  }
+
+  .topbar .audit-btn {
+    display: none;
+  }
+
+  /* `clip` (y no `hidden`) para que el menú lateral siga siendo sticky. */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    overflow: clip;
+  }
+
+  .sidebar,
+  .sidebar-collapsed .sidebar {
+    position: sticky;
+    top: 64px;
+    left: 0;
+    z-index: 8;
+    order: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 54px;
+    flex: 0 0 auto;
+    padding: 5px 10px;
+    background: #050a15;
+    border-right: 0;
+    border-bottom: 1px solid #17233a;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar .collapse,
+  .sidebar-collapsed .sidebar .collapse {
+    display: none;
+  }
+
+  .sidebar .side-group,
+  .sidebar-collapsed .sidebar .side-group {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+    margin: 0;
+  }
+
+  .sidebar .side-group > small,
+  .sidebar-collapsed .sidebar .side-group > small,
+  .sidebar .sidebar-tip,
+  .sidebar-collapsed .sidebar .sidebar-tip {
+    display: none;
+  }
+
+  .sidebar .side-group a,
+  .sidebar-collapsed .sidebar .side-group a {
+    display: flex;
+    justify-content: flex-start;
+    gap: 7px;
+    padding: 9px 11px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .sidebar .side-group span,
+  .sidebar-collapsed .sidebar .side-group span {
+    display: inline;
+  }
+
+  .main-content,
+  .sidebar-collapsed .main-content {
+    order: 1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 20px 14px 30px;
+  }
+}

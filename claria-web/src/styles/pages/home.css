@@ -1,0 +1,297 @@
+/* ==========================================================================
+   Página: Inicio
+   ========================================================================== */
+
+.crumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 26px;
+  color: #91a0b6;
+}
+
+.crumb strong {
+  color: #dce5f3;
+}
+
+.active-dot {
+  margin-left: auto;
+  color: #00c995;
+  font-weight: 700;
+}
+
+/* --- Bienvenida --------------------------------------------------------- */
+
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  background: #08263e;
+  color: #00cbed;
+  font-weight: 800;
+}
+
+.welcome h2 {
+  margin: 0 0 5px;
+  font-size: 21px;
+}
+
+.welcome p {
+  margin: 0;
+  color: #8192aa;
+}
+
+.pill {
+  padding: 5px 10px;
+  border: 1px solid #064b60;
+  border-radius: 20px;
+  background: #06202b;
+  color: #00cbed;
+  font-size: 11px;
+}
+
+.streak,
+.score {
+  margin-left: auto;
+  padding: 10px 14px;
+  border: 1px solid #624018;
+  border-radius: 14px;
+  background: #211d20;
+  color: #ffa900;
+  font-weight: 800;
+  text-align: center;
+}
+
+.score {
+  margin-left: 0;
+  color: #00cbed;
+  border-color: #07465a;
+  background: #09202f;
+}
+
+/* --- Hero --------------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  min-height: 560px;
+  padding: 56px;
+  background: radial-gradient(ellipse at 75% 30%, #0b2438, #0b142a 60%, #080f20);
+}
+
+.hero-copy {
+  flex: 1;
+}
+
+.hero h1 {
+  margin: 26px 0;
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 55px;
+  line-height: 1.15;
+}
+
+.hero h1 span {
+  color: #00cbed;
+  font-family: inherit;
+}
+
+.hero-copy > p {
+  max-width: 690px;
+  margin-bottom: 28px;
+  font-size: 18px;
+}
+
+.route-card {
+  flex: none;
+  width: 320px;
+  padding: 24px;
+  background: #070e1e;
+  border: 1px solid #182540;
+  border-radius: 20px;
+}
+
+.route-card h3 {
+  margin: 18px 0 5px;
+  padding-left: 12px;
+  border-left: 2px solid #00cbed;
+  font-size: 16px;
+}
+
+.route-card p {
+  padding-left: 14px;
+  font-size: 14px;
+}
+
+.route-card b {
+  display: block;
+  margin-top: 8px;
+  color: #00cbed;
+}
+
+/* --- Estado del curso --------------------------------------------------- */
+
+.sync {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0;
+  padding: 20px 24px;
+}
+
+.sync-icon {
+  padding: 12px;
+  border-radius: 14px;
+  background: #09263d;
+  color: #00cbed;
+  font-size: 27px;
+}
+
+.sync p {
+  font-size: 14px;
+}
+
+.progress {
+  width: 210px;
+  margin-left: auto;
+  color: #8797ad;
+}
+
+.progress span {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+/* --- Reto del día ------------------------------------------------------- */
+
+.challenge {
+  margin-bottom: 24px;
+  padding: 24px;
+}
+
+.challenge h2 {
+  margin: 15px 0 6px;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .hero {
+    gap: 26px;
+    padding: 35px;
+  }
+
+  .route-card {
+    width: 280px;
+  }
+}
+
+@media (max-width: 760px) {
+  .crumb {
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+
+  .active-dot {
+    display: none;
+  }
+
+  .welcome {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    flex-wrap: wrap;
+    align-items: start;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .welcome .avatar {
+    grid-column: 1;
+    grid-row: 1;
+    width: 48px;
+    height: 48px;
+  }
+
+  .welcome > div:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    flex: none;
+    width: auto;
+    min-width: 0;
+  }
+
+  .welcome h2 {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .pill {
+    display: inline-block;
+    margin: 5px 0 0;
+  }
+
+  .streak {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0;
+  }
+
+  .score {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+  }
+
+  .hero {
+    display: block;
+    min-height: 0;
+    padding: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 8vw, 42px);
+  }
+
+  .route-card {
+    width: 100%;
+    margin-top: 25px;
+    padding: 16px;
+  }
+
+  .sync {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .sync .btn {
+    width: 100%;
+  }
+
+  .progress {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 390px) {
+  .streak,
+  .score {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 15px;
+  }
+}

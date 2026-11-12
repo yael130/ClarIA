@@ -1,0 +1,295 @@
+/* ==========================================================================
+   Tema claro
+   Se activa con la clase `light` en <html>. Va al final para sobrescribir
+   los colores del tema oscuro.
+   ========================================================================== */
+
+html.light,
+html.light body {
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+/* --- Shell -------------------------------------------------------------- */
+
+html.light .app-shell,
+html.light .topbar {
+  background: var(--surface-page);
+  color: var(--ink);
+}
+
+html.light .topbar,
+html.light .sidebar,
+html.light .page-head {
+  border-color: var(--line);
+}
+
+html.light .brand {
+  color: var(--ink);
+}
+
+html.light .brand small {
+  color: var(--ink-subtle);
+}
+
+html.light .top-links a {
+  color: var(--ink-muted);
+}
+
+html.light .top-links a:hover,
+html.light .top-links .nav-active {
+  color: var(--brand);
+}
+
+html.light .audit-btn {
+  background: #e5f7fa;
+  border-color: #b8e7ef;
+  color: #006b82;
+}
+
+html.light .icon-btn,
+html.light .profile-menu {
+  background: #fff;
+  border-color: var(--line);
+  color: #24354b;
+}
+
+html.light .profile-menu a,
+html.light .profile-menu button {
+  color: var(--ink);
+}
+
+html.light .student {
+  color: var(--ink-muted);
+}
+
+html.light .student small {
+  color: #a66700;
+}
+
+html.light .sidebar {
+  background: #f8fbff;
+}
+
+html.light .side-group a {
+  color: #445872;
+}
+
+html.light .sidebar .side-group a:hover,
+html.light .sidebar .side-group .side-active {
+  background: #e3f2fa;
+  color: #007f9c;
+}
+
+html.light .sidebar-tip {
+  background: #eaf2fa;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+html.light .sidebar-tip p {
+  color: var(--ink-subtle);
+}
+
+/* --- Superficies -------------------------------------------------------- */
+
+html.light .panel,
+html.light .course,
+html.light .article,
+html.light .welcome,
+html.light .sync,
+html.light .achievement {
+  background: var(--surface-card);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+html.light .route-card,
+html.light .context,
+html.light .key,
+html.light .option,
+html.light .editor textarea,
+html.light .token-cloud,
+html.light .modal input,
+html.light .modal textarea {
+  background: var(--surface-raised);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+html.light .panel hr {
+  border-color: var(--line);
+}
+
+html.light .modal-backdrop {
+  background: #17243880;
+}
+
+/* --- Texto -------------------------------------------------------------- */
+
+html.light .page-head h1,
+html.light .welcome h2,
+html.light .course h2,
+html.light .article h2,
+html.light .quiz h2,
+html.light .achievement h2,
+html.light .route-card h3,
+html.light .modal h2 {
+  color: var(--ink);
+}
+
+html.light .page-head p,
+html.light .panel p,
+html.light .route-card p,
+html.light .course p,
+html.light .article p,
+html.light .stats,
+html.light .crumb,
+html.light .meta,
+html.light .tokenizer-foot {
+  color: var(--ink-muted);
+}
+
+html.light .crumb strong,
+html.light .stats strong {
+  color: var(--ink);
+}
+
+html.light .course .row-between,
+html.light .article .row-between span {
+  color: var(--ink-subtle);
+}
+
+html.light .green {
+  color: #00845f;
+}
+
+/* --- Botones ------------------------------------------------------------ */
+
+html.light .btn,
+html.light .chip {
+  background: #edf3f9;
+  border-color: var(--line);
+  color: #24354b;
+}
+
+html.light .btn.primary,
+html.light .chip.selected {
+  background: #00b8d8;
+  color: #042536;
+  border-color: #00b8d8;
+}
+
+html.light .btn.white {
+  background: white;
+  color: #172438;
+}
+
+html.light .option:hover,
+html.light .option.chosen {
+  background: #e8f7fb;
+  border-color: #0088a3;
+}
+
+/* --- Inicio ------------------------------------------------------------- */
+
+html.light .hero {
+  background: radial-gradient(ellipse at 75% 30%, #e4f3fb, #f9fbff 65%, #edf4fb);
+}
+
+html.light .hero h1 {
+  color: #172438;
+}
+
+html.light .hero h1 span {
+  color: #007f9c;
+}
+
+html.light .sync-icon {
+  background: #e4f6fa;
+}
+
+html.light .welcome .streak {
+  background: #fff7e6;
+  border-color: #f2d49b;
+  color: #9c6400;
+}
+
+html.light .welcome .score {
+  background: #e6f7fa;
+  border-color: #b7e9f1;
+  color: #007f9c;
+}
+
+/* --- Flashcards --------------------------------------------------------- */
+
+html.light .flashcard {
+  background: #fff;
+  color: var(--ink);
+}
+
+html.light .flashcard strong {
+  color: var(--ink);
+}
+
+html.light .flashcard .row-between,
+html.light .flashcard > span {
+  color: var(--ink-muted);
+}
+
+/* --- Tokenizador -------------------------------------------------------- */
+
+html.light .tokenizer-toolbar {
+  background: #e8f0f7;
+  border-color: var(--line);
+  color: var(--ink-muted);
+}
+
+html.light .encoding-badge {
+  color: #075b72;
+  background: #dceff7;
+}
+
+html.light .token-piece {
+  background: #e6f3fa;
+  color: #173650;
+  border-color: #c7e1ef;
+}
+
+html.light .token-empty {
+  background: #f6f9fd;
+  color: var(--ink-subtle);
+  border-color: var(--line);
+}
+
+/* --- Detector ----------------------------------------------------------- */
+
+html.light .warning {
+  background: #fff3f3;
+  color: #9f2845;
+  border-color: #f2ccd3;
+}
+
+html.light .rubric label {
+  color: var(--ink-muted);
+}
+
+html.light .rubric label small {
+  color: var(--ink-subtle);
+}
+
+/* --- Formularios -------------------------------------------------------- */
+
+html.light input,
+html.light textarea,
+html.light select {
+  accent-color: #0088a3;
+}
+
+html.light button:focus-visible,
+html.light a:focus-visible,
+html.light input:focus-visible,
+html.light textarea:focus-visible,
+html.light select:focus-visible {
+  outline-color: #007f9c;
+}

@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Página: Flashcards
+   ========================================================================== */
+
+.flashcard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 400px;
+  margin: 25px 0;
+  padding: 30px;
+  border: 2px solid #08728d;
+  text-align: center;
+  cursor: pointer;
+}
+
+.flashcard strong {
+  max-width: 850px;
+  margin: auto;
+  font-size: 29px;
+  line-height: 1.5;
+}
+
+.flashcard > span {
+  color: #8495ad;
+}
+
+.flashcard .row-between {
+  width: 100%;
+  color: #00cbed;
+}
+
+.card-meta {
+  color: #8192aa;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .flashcard {
+    min-height: 320px;
+    padding: 20px;
+  }
+
+  .flashcard strong {
+    font-size: 22px;
+  }
+
+  .flashcard .row-between {
+    justify-content: space-between;
+  }
+}

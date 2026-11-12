@@ -1,0 +1,85 @@
+<div class="page-head">
+  <div class="eyebrow">₀₁ LABORATORIO INTERACTIVO</div>
+  <h1>Tokenizador y Métricas de Inferencia</h1>
+  <p>
+    Observa cómo un modelo separa el texto en tokens reales y explora su relación con el costo y el
+    contexto.
+  </p>
+</div>
+
+<div class="tokenizer-toolbar">
+  <span>Codificación activa</span>
+  <strong class="encoding-badge">{{ encoding }}</strong>
+  <span>Usada por GPT-4o y familias actuales de modelos</span>
+</div>
+
+<!-- Métricas -->
+<div class="metrics">
+  <article class="panel"><small>Tokens</small><strong>{{ tokens().length }}</strong></article>
+  <article class="panel"><small>Caracteres</small><strong>{{ textValue().length }}</strong></article>
+  <article class="panel"><small>Palabras</small><strong>{{ words() }}</strong></article>
+  <article class="panel"><small>Tokens / palabra</small><strong>{{ ratio() }}</strong></article>
+  <article class="panel">
+    <small>Costo de referencia*</small><strong>{{ estimatedCost() }}</strong>
+  </article>
+  <article class="panel">
+    <small>Contexto usado / 128k</small><strong>{{ contextPercent() }}%</strong>
+  </article>
+</div>
+
+<section class="grid two tokenizer-grid">
+  <!-- Entrada -->
+  <article class="panel editor">
+    <div class="row-between">
+      <label for="token-input"><b>Texto de entrada</b></label>
+      <button class="text-button" type="button" [disabled]="!text" (click)="clear()">Limpiar</button>
+    </div>
+
+    <textarea
+      id="token-input"
+      placeholder="Escribe o pega texto para tokenizar…"
+      aria-describedby="token-help"
+      [ngModel]="text"
+      (ngModelChange)="onTextChange($event)"
+    ></textarea>
+
+    <div class="tokenizer-foot" id="token-help">
+      <span>La tokenización ocurre localmente en tu navegador.</span>
+      <span>{{ contextPercent() }}% del contexto de referencia</span>
+    </div>
+    <div class="bar"><i [style.width.%]="contextBar()"></i></div>
+  </article>
+
+  <!-- Resultado -->
+  <article class="panel editor token-results">
+    <div class="row-between">
+      <b>Tokens generados por el encoder</b>
+      <span>{{ tokens().length }} tokens</span>
+    </div>
+
+    @if (tokens().length) {
+      <div class="token-cloud" aria-live="polite">
+        @for (token of tokens(); track $index) {
+          <span class="token-piece" [title]="'Token ID: ' + token.id">
+            <small>{{ token.id }}</small><b>{{ token.text }}</b>
+          </span>
+        }
+      </div>
+    } @else {
+      <div class="token-empty">Escribe texto para ver la división real en tokens.</div>
+    }
+
+    <div class="key">
+      <b>¿Por qué importa?</b>
+      <p>
+        Un token puede ser una palabra, parte de ella o un signo. La cantidad depende del modelo y
+        la codificación.
+      </p>
+    </div>
+
+    <small>
+      * Estimación ilustrativa basada en una tarifa de referencia; no representa un cobro real ni el
+      precio actual de un servicio.
+    </small>
+  </article>
+</section>

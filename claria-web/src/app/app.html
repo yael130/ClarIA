@@ -1,0 +1,90 @@
+<div class="app-shell" [class.sidebar-collapsed]="!sidebarOpen()">
+  <!-- Barra superior -->
+  <header class="topbar">
+    <a class="brand" routerLink="/inicio">
+      <img src="assets/claria-logo.jpg" alt="Logo ClarIA" />
+      <span>
+        <b>ClarIA</b>
+        <small>APRENDE CON CRITERIO</small>
+      </span>
+    </a>
+
+    <nav class="top-links">
+      @for (link of topLinks; track link.path) {
+        <a [routerLink]="link.path" routerLinkActive="nav-active">{{ link.label }}</a>
+      }
+    </nav>
+
+    <div class="top-actions">
+      <button class="audit-btn" (click)="auditOpen.set(true)">♧　Auditoría UX/UI</button>
+
+      <button
+        class="icon-btn theme"
+        [attr.aria-label]="themeLabel()"
+        [attr.title]="themeLabel()"
+        (click)="toggleTheme()"
+      >
+        {{ dark() ? '☼' : '☾' }}
+      </button>
+
+      <button class="avatar" aria-label="Perfil" (click)="toggleProfile()">ES</button>
+
+      <div class="student">
+        <b>Estudiante</b>
+        <small>🔥 Racha: 4 días</small>
+
+        @if (profileOpen()) {
+          <div class="profile-menu">
+            <b>Estudiante</b>
+            <a routerLink="/logros" (click)="profileOpen.set(false)">Ver mis logros</a>
+            <button (click)="profileOpen.set(false)">Cerrar menú</button>
+          </div>
+        }
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Menú lateral -->
+    <aside class="sidebar">
+      <button class="collapse" aria-label="Contraer menú" (click)="toggleSidebar()">‹</button>
+
+      @for (section of sidebarSections; track section.title) {
+        <div class="side-group">
+          <small>{{ section.title }}</small>
+          @for (link of section.links; track link.path) {
+            <a [routerLink]="link.path" routerLinkActive="side-active">{{ link.icon }} <span>{{ link.label }}</span></a>
+          }
+        </div>
+      }
+
+      <div class="sidebar-tip">
+        <b>✧ Aprende a tu ritmo</b>
+        <p>
+          La IA acompaña tu aprendizaje; tus ideas siguen siendo tuyas. Verifica antes de concluir.
+        </p>
+      </div>
+    </aside>
+
+    <!-- Contenido de la ruta activa -->
+    <main class="main-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
+
+<!-- Modal informativo de auditoría -->
+@if (auditOpen()) {
+  <div class="modal-backdrop" (click)="auditOpen.set(false)">
+    <section class="modal panel" (click)="$event.stopPropagation()">
+      <button class="close" (click)="auditOpen.set(false)">×</button>
+      <div class="eyebrow">AUDITORÍA UX/UI</div>
+      <h2>Tu espacio de aprendizaje</h2>
+      <p>
+        ClarIA te ayuda a explorar la inteligencia artificial conservando tu criterio. Este
+        prototipo usa datos de prueba.
+      </p>
+      <button class="btn primary" (click)="auditOpen.set(false)">Entendido</button>
+    </section>
+  </div>
+}

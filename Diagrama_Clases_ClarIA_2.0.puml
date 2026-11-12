@@ -1,0 +1,134 @@
+@startuml ClarIA_2_0_Class_Diagram
+
+' Apariencia coordinada con los diagramas anteriores
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam defaultFontName Arial
+skinparam defaultFontColor #253746
+skinparam ArrowColor #11A899
+skinparam ArrowThickness 1.5
+skinparam ClassBorderColor #18344F
+skinparam ClassBackgroundColor #EAF3F5
+skinparam ClassFontColor #FFFFFF
+skinparam ClassAttributeFontColor #253746
+skinparam ClassHeaderBackgroundColor #18344F
+skinparam packageStyle rectangle
+skinparam packageBorderColor #18344F
+skinparam packageFontColor #18344F
+hide methods
+
+package "Contenido y progreso" {
+  class Curso {
+    id: UUID {PK}
+    title: texto
+    is_published: boolean
+  }
+
+  class Lección {
+    id: UUID {PK}
+    course_id: UUID {FK}
+    title: texto
+    type: texto
+  }
+
+  class ProgresoLección {
+    user_id + lesson_id: UUID {PK/FK}
+    status: estado
+    time_spent_s: entero
+    completed_at: fecha
+  }
+
+  class Perfil {
+    id: UUID {PK}
+    full_name: texto
+    birth_date: fecha
+    role_id: UUID {FK}
+  }
+}
+
+package "Evaluación y práctica" {
+  class Quiz {
+    id: UUID {PK}
+    lesson_id o course_id: UUID {FK}
+    passing_score: entero
+  }
+
+  class Pregunta {
+    id: UUID {PK}
+    quiz_id: UUID {FK}
+    type: texto
+    statement: texto
+  }
+
+  class Opción {
+    id: UUID {PK}
+    question_id: UUID {FK}
+    correct_order: entero
+  }
+
+  class IntentoQuiz {
+    id: UUID {PK}
+    user_id + quiz_id: UUID {FK}
+    score: decimal
+    passed: boolean
+  }
+
+  class Escenario {
+    id: UUID {PK}
+    title: texto
+    goal: texto
+  }
+
+  class IntentoPrompt {
+    id: UUID {PK}
+    user_id + scenario_id: UUID {FK}
+    score: entero
+    attempt_no: entero
+  }
+}
+
+package "Encuestas y logros" {
+  class Encuesta {
+    id: UUID {PK}
+    type: pre/post
+    title: texto
+  }
+
+  class RespuestaEncuesta {
+    id: UUID {PK}
+    user_id + survey_id: UUID {FK}
+    submitted_at: fecha
+  }
+
+  class Logro {
+    id: UUID {PK}
+    name: texto
+  }
+
+  class LogroUsuario {
+    user_id + achievement_id: UUID {PK/FK}
+    earned_at: fecha
+  }
+}
+
+Curso "1" -- "N" Lección
+Lección "1" -- "N" ProgresoLección
+Perfil "1" -- "N" ProgresoLección
+Quiz "1" -- "N" Pregunta
+Pregunta "1" -- "N" Opción
+Quiz "1" -- "N" IntentoQuiz
+Perfil "1" -- "N" IntentoQuiz
+Escenario "1" -- "N" IntentoPrompt
+Perfil "1" -- "N" IntentoPrompt
+Encuesta "1" -- "N" RespuestaEncuesta
+Perfil "1" -- "N" RespuestaEncuesta
+Logro "1" -- "N" LogroUsuario
+Perfil "1" -- "N" LogroUsuario
+
+note bottom of IntentoPrompt
+  Solo se conserva el puntaje del intento;
+  no se almacena el texto del prompt.
+end note
+
+@enduml

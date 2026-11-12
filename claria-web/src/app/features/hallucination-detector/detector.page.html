@@ -1,0 +1,57 @@
+<div class="page-head">
+  <div class="eyebrow">▦ LABORATORIO DE CRITERIO HUMANO</div>
+  <h1>Detector de Alucinaciones y Rúbrica</h1>
+  <p>
+    Audita cualquier respuesta de IA: detecta afirmaciones absolutistas, citas inventadas y evalúa
+    la solidez con la rúbrica oficial.
+  </p>
+</div>
+
+<div class="row-between">
+  <span></span>
+  <button class="btn" (click)="loadExample()">✧ Cargar ejemplo con criterio humano</button>
+</div>
+
+<section class="grid detector">
+  <!-- Texto a auditar -->
+  <article class="panel editor">
+    <b>
+      Borrador generado por IA sujeto a auditoría
+      <small>{{ flags().length }} marcadores de riesgo detectados</small>
+    </b>
+    <textarea [(ngModel)]="text"></textarea>
+
+    <h3>Análisis heurístico de patrones sospechosos:</h3>
+    @for (flag of flags(); track flag) {
+      <div class="warning">
+        ⚠　<b>“{{ flag }}”</b>　Revisa esta afirmación y contrástala con evidencia primaria.
+      </div>
+    }
+
+    <button class="btn" (click)="clearText()">Limpiar texto</button>
+  </article>
+
+  <!-- Rúbrica -->
+  <article class="panel rubric">
+    <h2>⚖ Rúbrica de Criterio <span>Puntaje: {{ score() }}/100</span></h2>
+
+    @for (item of criteria; track item.label) {
+      <label>
+        {{ item.label }} <b>{{ item.value }} / 10</b>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          [(ngModel)]="item.value"
+          (ngModelChange)="updateScore()"
+        />
+        <small>{{ item.description }}</small>
+      </label>
+    }
+
+    <div class="key">
+      Dictamen evaluativo: <b>{{ verdict() }}</b>
+      <p>Contrasta datos primarios y añade juicio humano.</p>
+    </div>
+  </article>
+</section>

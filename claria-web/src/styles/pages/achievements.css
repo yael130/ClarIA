@@ -1,0 +1,34 @@
+/* ==========================================================================
+   Página: Logros
+   ========================================================================== */
+
+.achievement {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 25px;
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #087fc5;
+  font-size: 26px;
+}
+
+.achievement h2 {
+  margin: 0;
+}
+
+.achievement p {
+  margin: 8px 0 18px;
+}
+
+.achievement .row-between span {
+  color: #61728b;
+  font-size: 13px;
+}

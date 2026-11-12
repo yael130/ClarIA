@@ -1,0 +1,1456 @@
+{
+  "_type": "Project",
+  "_id": "88A106722E",
+  "name": "ClarIA 2.0",
+  "ownedElements": [
+    {
+      "_type": "UMLModel",
+      "_id": "24E3912F60",
+      "name": "Modelo de dominio",
+      "ownedElements": [
+        {
+          "_type": "UMLClass",
+          "_id": "FA0794DC38",
+          "name": "Curso",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "6804C63241",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "5F2B89F39A",
+              "name": "title",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "109FC5DABF",
+              "name": "is_published",
+              "type": "boolean",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "D60CEC4172",
+          "name": "Lección",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "1F3E064EC1",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "6882650564",
+              "name": "course_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "9DC896677C",
+              "name": "title",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "1C62564DB4",
+              "name": "type",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "8042DF4CBF",
+          "name": "ProgresoLección",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "1D2784E29B",
+              "name": "user_id + lesson_id",
+              "type": "UUID {PK/FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "87AAE7B3AD",
+              "name": "status",
+              "type": "estado",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "EBB9344FA8",
+              "name": "time_spent_s",
+              "type": "entero",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "BCC2970C31",
+              "name": "completed_at",
+              "type": "fecha",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "40BF9D9694",
+          "name": "Perfil",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "93BA62BB4B",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "811C07B4B4",
+              "name": "full_name",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "45D51F749D",
+              "name": "birth_date",
+              "type": "fecha",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "10EDAFE3DB",
+              "name": "role_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "9189CE6CF0",
+          "name": "Quiz",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "7D883FCF3E",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "FE714FC664",
+              "name": "lesson_id o course_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "B52A10AFF1",
+              "name": "passing_score",
+              "type": "entero",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "1E42598B80",
+          "name": "Pregunta",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "E39C979504",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "0C7AFAC46C",
+              "name": "quiz_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "B313911BF4",
+              "name": "type",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "D8F55457BA",
+              "name": "statement",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "93547A745C",
+          "name": "Opción",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "7B726DF5E6",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "A54CF382D5",
+              "name": "question_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "5F8D1C37B4",
+              "name": "correct_order",
+              "type": "entero",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "74CCE4A826",
+          "name": "IntentoQuiz",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "0F83CEC046",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "913F4EC817",
+              "name": "user_id + quiz_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "3C976CE5AA",
+              "name": "score",
+              "type": "decimal",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "CAC58059EF",
+              "name": "passed",
+              "type": "boolean",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "E5B2F66904",
+          "name": "Escenario",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "7E4026CC11",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "B5D6B76DF1",
+              "name": "title",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "60B174E93D",
+              "name": "goal",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "11286DC3D4",
+          "name": "IntentoPrompt",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "692759D8A7",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "665A2EE1D2",
+              "name": "user_id + scenario_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "A8BB79CF43",
+              "name": "score",
+              "type": "entero",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "2BA0CFB26F",
+              "name": "attempt_no",
+              "type": "entero",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "0B3D3BC4A2",
+          "name": "Encuesta",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "E3E54299AA",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "80EF09C223",
+              "name": "type",
+              "type": "pre/post",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "E88C65CBF0",
+              "name": "title",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "4361231B23",
+          "name": "RespuestaEncuesta",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "39FA835F37",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "787B8865E2",
+              "name": "user_id + survey_id",
+              "type": "UUID {FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "A3C95E99F0",
+              "name": "submitted_at",
+              "type": "fecha",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "67FD9DED7E",
+          "name": "Logro",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "4DDF48F0F0",
+              "name": "id",
+              "type": "UUID {PK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "1F84B354BA",
+              "name": "name",
+              "type": "texto",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLClass",
+          "_id": "B3AE26CE5F",
+          "name": "LogroUsuario",
+          "ownedElements": [
+            {
+              "_type": "UMLAttribute",
+              "_id": "E7BD9847FA",
+              "name": "user_id + achievement_id",
+              "type": "UUID {PK/FK}",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            },
+            {
+              "_type": "UMLAttribute",
+              "_id": "9723B61DFC",
+              "name": "earned_at",
+              "type": "fecha",
+              "visibility": "public",
+              "isStatic": false,
+              "isReadOnly": false
+            }
+          ]
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "F81D55D394",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "844D4CAFB2",
+            "reference": {
+              "$ref": "FA0794DC38"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "55CF48CF76",
+            "reference": {
+              "$ref": "D60CEC4172"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "CA3A06E792",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "CAD1F6EC2F",
+            "reference": {
+              "$ref": "D60CEC4172"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "8BC1982AF6",
+            "reference": {
+              "$ref": "8042DF4CBF"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "0F3736FFC5",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "CD566DABB9",
+            "reference": {
+              "$ref": "40BF9D9694"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "6FB4867471",
+            "reference": {
+              "$ref": "8042DF4CBF"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "97623EBD55",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "F8F7C8FE56",
+            "reference": {
+              "$ref": "9189CE6CF0"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "D56D0A33CA",
+            "reference": {
+              "$ref": "1E42598B80"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "FD88269E3B",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "C17825C90E",
+            "reference": {
+              "$ref": "1E42598B80"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "105264D475",
+            "reference": {
+              "$ref": "93547A745C"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "2B45CF5EDF",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "2C5D4B12D5",
+            "reference": {
+              "$ref": "9189CE6CF0"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "31F377A70E",
+            "reference": {
+              "$ref": "74CCE4A826"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "B4ACCD6B8B",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "6509A7C982",
+            "reference": {
+              "$ref": "40BF9D9694"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "F04B42C09F",
+            "reference": {
+              "$ref": "74CCE4A826"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "E6BDD9BC60",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "11675A41F4",
+            "reference": {
+              "$ref": "E5B2F66904"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "F72DD32D1E",
+            "reference": {
+              "$ref": "11286DC3D4"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "6C82DE668B",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "B5AEF71ACC",
+            "reference": {
+              "$ref": "40BF9D9694"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "0AE5EF4501",
+            "reference": {
+              "$ref": "11286DC3D4"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "CAC40C704F",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "302AFFA79C",
+            "reference": {
+              "$ref": "0B3D3BC4A2"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "5D94ABD415",
+            "reference": {
+              "$ref": "4361231B23"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "659E4F6A23",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "14D204BF9A",
+            "reference": {
+              "$ref": "40BF9D9694"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "30FF1DECC3",
+            "reference": {
+              "$ref": "4361231B23"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "9B8E000E42",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "9D6E9DCA1C",
+            "reference": {
+              "$ref": "67FD9DED7E"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "8D85A3C83A",
+            "reference": {
+              "$ref": "B3AE26CE5F"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "3E43F7DC39",
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "1C6AC44476",
+            "reference": {
+              "$ref": "40BF9D9694"
+            },
+            "multiplicity": "1",
+            "aggregation": "none"
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "F1F0AF91D3",
+            "reference": {
+              "$ref": "B3AE26CE5F"
+            },
+            "multiplicity": "N",
+            "aggregation": "none"
+          }
+        },
+        {
+          "_type": "UMLClassDiagram",
+          "_id": "C0A4A7B410",
+          "name": "Diagrama de clases",
+          "ownedViews": [
+            {
+              "_type": "UMLClassView",
+              "_id": "0885FA8915",
+              "model": {
+                "$ref": "FA0794DC38"
+              },
+              "left": 60,
+              "top": 110,
+              "width": 210,
+              "height": 106,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "BCA5C05796",
+              "model": {
+                "$ref": "D60CEC4172"
+              },
+              "left": 300,
+              "top": 110,
+              "width": 210,
+              "height": 128,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "9C1E4CE762",
+              "model": {
+                "$ref": "8042DF4CBF"
+              },
+              "left": 540,
+              "top": 110,
+              "width": 210,
+              "height": 128,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "92810C4179",
+              "model": {
+                "$ref": "40BF9D9694"
+              },
+              "left": 800,
+              "top": 110,
+              "width": 210,
+              "height": 128,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "97A8B99C8C",
+              "model": {
+                "$ref": "9189CE6CF0"
+              },
+              "left": 60,
+              "top": 400,
+              "width": 210,
+              "height": 106,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "952292AE62",
+              "model": {
+                "$ref": "1E42598B80"
+              },
+              "left": 300,
+              "top": 400,
+              "width": 210,
+              "height": 128,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "A80F9F6892",
+              "model": {
+                "$ref": "93547A745C"
+              },
+              "left": 540,
+              "top": 400,
+              "width": 210,
+              "height": 106,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "0719C34172",
+              "model": {
+                "$ref": "74CCE4A826"
+              },
+              "left": 300,
+              "top": 620,
+              "width": 210,
+              "height": 128,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "45D12AB4A5",
+              "model": {
+                "$ref": "E5B2F66904"
+              },
+              "left": 60,
+              "top": 800,
+              "width": 210,
+              "height": 106,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "CBAEAB66BD",
+              "model": {
+                "$ref": "11286DC3D4"
+              },
+              "left": 300,
+              "top": 800,
+              "width": 210,
+              "height": 128,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "48B22FB9B1",
+              "model": {
+                "$ref": "0B3D3BC4A2"
+              },
+              "left": 540,
+              "top": 800,
+              "width": 210,
+              "height": 106,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "806C2C74CC",
+              "model": {
+                "$ref": "4361231B23"
+              },
+              "left": 800,
+              "top": 800,
+              "width": 210,
+              "height": 106,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "F18B7DD95B",
+              "model": {
+                "$ref": "67FD9DED7E"
+              },
+              "left": 540,
+              "top": 1030,
+              "width": 210,
+              "height": 84,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLClassView",
+              "_id": "AC82ED6C73",
+              "model": {
+                "$ref": "B3AE26CE5F"
+              },
+              "left": 800,
+              "top": 1030,
+              "width": 210,
+              "height": 84,
+              "visible": true,
+              "showVisibility": true,
+              "showNamespace": false,
+              "showProperty": true,
+              "showOperation": false,
+              "showReception": false,
+              "showClassifierBehavior": false,
+              "showMultiplicity": true,
+              "wordWrap": true,
+              "fillColor": "#EAF3F5",
+              "fontColor": "#253746",
+              "lineColor": "#18344F",
+              "nameCompartment": true,
+              "attributeCompartment": true,
+              "operationCompartment": false
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "6BF1AACA29",
+              "model": {
+                "$ref": "F81D55D394"
+              },
+              "tail": {
+                "$ref": "0885FA8915"
+              },
+              "head": {
+                "$ref": "BCA5C05796"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "37B258D7AC",
+              "model": {
+                "$ref": "CA3A06E792"
+              },
+              "tail": {
+                "$ref": "BCA5C05796"
+              },
+              "head": {
+                "$ref": "9C1E4CE762"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "4B1C63BD21",
+              "model": {
+                "$ref": "0F3736FFC5"
+              },
+              "tail": {
+                "$ref": "92810C4179"
+              },
+              "head": {
+                "$ref": "9C1E4CE762"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "76A1809F1C",
+              "model": {
+                "$ref": "97623EBD55"
+              },
+              "tail": {
+                "$ref": "97A8B99C8C"
+              },
+              "head": {
+                "$ref": "952292AE62"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "AA7ABAEFD2",
+              "model": {
+                "$ref": "FD88269E3B"
+              },
+              "tail": {
+                "$ref": "952292AE62"
+              },
+              "head": {
+                "$ref": "A80F9F6892"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "E6673668C8",
+              "model": {
+                "$ref": "2B45CF5EDF"
+              },
+              "tail": {
+                "$ref": "97A8B99C8C"
+              },
+              "head": {
+                "$ref": "0719C34172"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "7492A47685",
+              "model": {
+                "$ref": "B4ACCD6B8B"
+              },
+              "tail": {
+                "$ref": "92810C4179"
+              },
+              "head": {
+                "$ref": "0719C34172"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "7B9AC8D62B",
+              "model": {
+                "$ref": "E6BDD9BC60"
+              },
+              "tail": {
+                "$ref": "45D12AB4A5"
+              },
+              "head": {
+                "$ref": "CBAEAB66BD"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "0304CBC27F",
+              "model": {
+                "$ref": "6C82DE668B"
+              },
+              "tail": {
+                "$ref": "92810C4179"
+              },
+              "head": {
+                "$ref": "CBAEAB66BD"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "C3EADF8146",
+              "model": {
+                "$ref": "CAC40C704F"
+              },
+              "tail": {
+                "$ref": "48B22FB9B1"
+              },
+              "head": {
+                "$ref": "806C2C74CC"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "CEBF279A04",
+              "model": {
+                "$ref": "659E4F6A23"
+              },
+              "tail": {
+                "$ref": "92810C4179"
+              },
+              "head": {
+                "$ref": "806C2C74CC"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "51DEA94304",
+              "model": {
+                "$ref": "9B8E000E42"
+              },
+              "tail": {
+                "$ref": "F18B7DD95B"
+              },
+              "head": {
+                "$ref": "AC82ED6C73"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "FEBC4685F6",
+              "model": {
+                "$ref": "3E43F7DC39"
+              },
+              "tail": {
+                "$ref": "92810C4179"
+              },
+              "head": {
+                "$ref": "AC82ED6C73"
+              },
+              "lineColor": "#11A899",
+              "lineMode": 1,
+              "showEnd1Multiplicity": true,
+              "showEnd2Multiplicity": true,
+              "showEnd1Name": false,
+              "showEnd2Name": false,
+              "points": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

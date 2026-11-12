@@ -1,0 +1,60 @@
+<div class="page-head">
+  <div class="eyebrow">☑ COMPROBACIÓN DIAGNÓSTICA</div>
+  <h1>Evaluaciones de Criterio</h1>
+  <p>
+    Casos prácticos interactivos donde pondrás a prueba tu discernimiento ante citas inventadas,
+    sesgos y alucinaciones.
+  </p>
+</div>
+
+@if (completed()) {
+  <!-- Resultado final -->
+  <section class="quiz panel result-panel">
+    <div class="eyebrow">EVALUACIÓN COMPLETADA</div>
+    <h2>Resultado: {{ score() }} / {{ maxScore }} puntos</h2>
+    <p>Has terminado los casos de práctica. Puedes volver a intentarlos para repasar.</p>
+    <button class="btn primary" (click)="restart()">Intentar de nuevo</button>
+  </section>
+} @else {
+  <!-- Caso en curso -->
+  <section class="quiz panel">
+    <div class="row-between">
+      <span>Caso {{ index() + 1 }} de {{ questions.length }}</span>
+      <b>Puntaje acumulado: {{ score() }}</b>
+    </div>
+    <hr />
+
+    <div class="context">
+      <div class="eyebrow">CONTEXTO DEL CASO</div>
+      Estás elaborando una tesis y le pides a una IA un resumen histórico sobre la revolución
+      industrial con referencias académicas.
+    </div>
+
+    <h2>{{ question().statement }}</h2>
+
+    @for (option of question().options; track option; let i = $index) {
+      <button
+        class="option"
+        [class.chosen]="choice() === i"
+        [attr.aria-pressed]="choice() === i"
+        [disabled]="done()"
+        (click)="choice.set(i)"
+      >
+        ◯　{{ option }}
+      </button>
+    }
+
+    @if (feedback()) {
+      <p class="feedback" role="status">{{ feedback() }}</p>
+    }
+
+    <div class="row-between quiz-actions">
+      <span>
+        {{ done() ? 'Respuesta registrada. Continúa al siguiente caso.' : 'Selecciona una opción para comprobar.' }}
+      </span>
+      <button class="btn white" [disabled]="choice() === null" (click)="check()">
+        {{ done() ? 'Siguiente caso' : 'Comprobar respuesta' }}
+      </button>
+    </div>
+  </section>
+}

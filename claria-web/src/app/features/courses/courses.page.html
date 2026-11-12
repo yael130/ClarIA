@@ -1,0 +1,60 @@
+<div class="page-head">
+  <div class="eyebrow">♧ ITINERARIO FORMATIVO</div>
+  <h1>Mis Cursos y Trayectorias</h1>
+  <p>
+    Currículo interactivo diseñado para que uses la IA como un copiloto crítico, ético y sin perder
+    jamás tu criterio humano.
+  </p>
+</div>
+
+<!-- Filtros por categoría -->
+<div class="filters">
+  <button class="chip" [class.selected]="filter() === 'Todos'" (click)="filter.set('Todos')">
+    Todos Los Cursos
+  </button>
+  @for (category of categories; track category) {
+    <button class="chip" [class.selected]="filter() === category" (click)="filter.set(category)">
+      {{ category }}
+    </button>
+  }
+</div>
+
+<!-- Catálogo -->
+<section class="grid courses">
+  @for (course of filtered(); track course.id) {
+    <article class="panel course">
+      <div class="meta"><b>{{ course.category }}</b> · {{ course.level }}</div>
+      <h2>{{ course.title }}</h2>
+      <p>{{ course.description }}</p>
+
+      <div class="stats">
+        ◷ {{ course.hours }} horas · {{ course.lessons }} lecciones
+        <strong>{{ course.progress }}%</strong>
+      </div>
+      <div class="bar"><i [style.width.%]="course.progress"></i></div>
+
+      <hr />
+
+      <div class="row-between">
+        <span>{{ course.progress ? 'En progreso' : 'Sin iniciar' }}</span>
+        <button class="btn white" (click)="openCourse(course.title)">Ver temario →</button>
+      </div>
+    </article>
+  }
+</section>
+
+<!-- Modal del temario -->
+@if (selected()) {
+  <div class="modal-backdrop" (click)="closeCourse()">
+    <section class="modal panel" (click)="$event.stopPropagation()">
+      <button class="close" (click)="closeCourse()">×</button>
+      <div class="eyebrow">TEMARIO DEL CURSO</div>
+      <h2>{{ selected() }}</h2>
+      <p>
+        Contenido de demostración. Las lecciones se conectarán con ClarIA cuando se integre la base
+        de datos.
+      </p>
+      <button class="btn primary" (click)="closeCourse()">Entendido</button>
+    </section>
+  </div>
+}

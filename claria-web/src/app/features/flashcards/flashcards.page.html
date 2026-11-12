@@ -1,0 +1,70 @@
+<div class="page-head">
+  <div class="eyebrow">▱ REPASO ESPACIADO ACTIVO</div>
+  <h1>Flashcards de Criterio</h1>
+  <p>Entrena tu mente en sesiones relámpago: límites de los transformadores, alucinaciones y sesgos.</p>
+</div>
+
+<div class="row-between">
+  <span>TARJETAS DOMINADAS　{{ masteredIds().length }} de {{ cards().length }}</span>
+  <button class="btn" (click)="showCreate.set(true)">＋ Crear flashcard</button>
+</div>
+
+<div class="row-between card-meta">
+  <span>Tarjeta {{ index() + 1 }} de {{ cards().length }}</span>
+  <b>{{ card().category }} · Dificultad Media</b>
+</div>
+
+<!-- Tarjeta (clic para voltear) -->
+<button
+  class="flashcard panel"
+  [attr.aria-label]="flipped() ? 'Mostrar pregunta' : 'Mostrar respuesta'"
+  (click)="flip()"
+>
+  <div class="row-between">
+    <b>{{ flipped() ? 'RESPUESTA' : 'PREGUNTA CONCEPTUAL' }}</b>
+    <span>⟳ Toca, haz clic o presiona espacio para voltear</span>
+  </div>
+  <strong>{{ flipped() ? card().answer : card().question }}</strong>
+  <span>{{ statusLabel() }}</span>
+</button>
+
+<!-- Navegación -->
+<div class="row-between">
+  <button class="btn" (click)="move(-1)">‹　Anterior</button>
+  <button class="btn" [disabled]="isMastered()" (click)="markMastered()">
+    {{ isMastered() ? '✓ Dominada' : '✓　¡La domino!' }}
+  </button>
+  <button class="btn" (click)="move(1)">Siguiente　›</button>
+</div>
+
+<!-- Modal para crear tarjeta -->
+@if (showCreate()) {
+  <div class="modal-backdrop">
+    <section class="modal panel">
+      <button class="close" (click)="showCreate.set(false)">×</button>
+      <div class="eyebrow">NUEVA TARJETA</div>
+      <h2>Crea tu flashcard</h2>
+
+      <label>
+        Pregunta
+        <input [(ngModel)]="newQuestion" placeholder="Escribe una pregunta" />
+      </label>
+      <label>
+        Respuesta
+        <textarea [(ngModel)]="newAnswer" placeholder="Escribe la respuesta"></textarea>
+      </label>
+      <label>
+        Categoría
+        <input [(ngModel)]="newCategory" placeholder="Personal" />
+      </label>
+
+      <button
+        class="btn primary"
+        [disabled]="!newQuestion.trim() || !newAnswer.trim()"
+        (click)="create()"
+      >
+        Guardar flashcard
+      </button>
+    </section>
+  </div>
+}

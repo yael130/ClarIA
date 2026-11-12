@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Página: Artículos
+   ========================================================================== */
+
+.articles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.article {
+  padding: 28px;
+}
+
+.article h2 {
+  margin: 14px 0;
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+.article p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.article hr {
+  margin: 20px 0;
+}
+
+.article .row-between span {
+  color: #60728c;
+  font-size: 12px;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .articles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
