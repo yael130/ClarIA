@@ -160,6 +160,22 @@
   height: 100%;
   border-radius: 10px;
   background: linear-gradient(90deg, #00c3df, #287bff);
+  /* Se llena desde 0 al aparecer y se ajusta con suavidad si cambia el valor. */
+  animation: bar-fill 1s 0.15s cubic-bezier(0.3, 0.7, 0.3, 1) both;
+  transition: width 0.4s ease-out;
+}
+
+@keyframes bar-fill {
+  from {
+    width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar i {
+    animation: none;
+    transition: none;
+  }
 }
 
 /* --- Recuadros de contexto y punto clave -------------------------------- */
