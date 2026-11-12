@@ -266,6 +266,10 @@ html.light .flashcard.back {
   background: #f0fbfe;
 }
 
+html.light .flashcard-hint {
+  color: var(--ink-subtle);
+}
+
 html.light .flashcard strong {
   color: var(--ink);
 }
