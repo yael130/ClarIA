@@ -114,6 +114,13 @@
   cursor: not-allowed;
 }
 
+/* Al presionar, el botón se "hunde" un poco. */
+.btn:active:not(:disabled),
+.chip:active {
+  filter: brightness(0.95);
+  transform: translateY(0) scale(0.97);
+}
+
 .chip {
   border-radius: 30px;
 }
@@ -125,6 +132,41 @@
   background: transparent;
   border: 0;
   cursor: pointer;
+}
+
+/* --- Tarjetas que se elevan al pasar el mouse -------------------------- */
+
+.course,
+.article,
+.achievement,
+.challenge {
+  transition:
+    transform 0.2s ease-out,
+    box-shadow 0.2s ease-out,
+    border-color 0.2s ease-out;
+}
+
+.course:hover,
+.article:hover,
+.achievement:hover,
+.challenge:hover {
+  border-color: #23557a;
+  box-shadow: 0 14px 30px rgb(0 0 0 / 35%);
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course:hover,
+  .article:hover,
+  .achievement:hover,
+  .challenge:hover {
+    transform: none;
+  }
+
+  .btn:active:not(:disabled),
+  .chip:active {
+    transform: none;
+  }
 }
 
 /* --- Distribución ------------------------------------------------------- */
