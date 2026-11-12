@@ -14,19 +14,41 @@
   <b>{{ card().category }} · Dificultad Media</b>
 </div>
 
-<!-- Tarjeta (clic para voltear) -->
-<button
-  class="flashcard panel"
-  [attr.aria-label]="flipped() ? 'Mostrar pregunta' : 'Mostrar respuesta'"
-  (click)="flip()"
->
-  <div class="row-between">
-    <b>{{ flipped() ? 'RESPUESTA' : 'PREGUNTA CONCEPTUAL' }}</b>
-    <span>⟳ Toca, haz clic o presiona espacio para voltear</span>
-  </div>
-  <strong>{{ flipped() ? card().answer : card().question }}</strong>
-  <span>{{ statusLabel() }}</span>
-</button>
+<!--
+  Tarjeta (clic para voltear). Ambas caras existen siempre y la tarjeta gira en 3D.
+  El @for sobre la tarjeta actual recrea el elemento al cambiar de tarjeta, así la
+  nueva entra con su animación y nunca se ve la respuesta durante el cambio.
+-->
+@for (current of [card()]; track current.id) {
+  <button
+    class="flashcard-scene"
+    [class.is-flipped]="flipped()"
+    [class.from-next]="direction() === 'next'"
+    [class.from-prev]="direction() === 'prev'"
+    [attr.aria-label]="flipped() ? 'Mostrar pregunta' : 'Mostrar respuesta'"
+    (click)="flip()"
+  >
+    <span class="flashcard-inner">
+      <span class="flashcard panel front" [attr.aria-hidden]="flipped()">
+        <span class="row-between">
+          <b>PREGUNTA CONCEPTUAL</b>
+          <span>⟳ Toca, haz clic o presiona espacio para voltear</span>
+        </span>
+        <strong>{{ current.question }}</strong>
+        <span>{{ statusLabel('front') }}</span>
+      </span>
+
+      <span class="flashcard panel back" [attr.aria-hidden]="!flipped()">
+        <span class="row-between">
+          <b>RESPUESTA</b>
+          <span>⟳ Toca, haz clic o presiona espacio para voltear</span>
+        </span>
+        <strong>{{ current.answer }}</strong>
+        <span>{{ statusLabel('back') }}</span>
+      </span>
+    </span>
+  </button>
+}
 
 <!-- Navegación -->
 <div class="row-between">

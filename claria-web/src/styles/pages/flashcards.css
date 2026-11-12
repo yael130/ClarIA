@@ -2,16 +2,59 @@
    Página: Flashcards
    ========================================================================== */
 
+/* Contenedor clicable: aporta la perspectiva para el giro 3D. */
+.flashcard-scene {
+  display: block;
+  width: 100%;
+  margin: 25px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  perspective: 1600px;
+  animation: card-enter 0.35s ease-out both;
+}
+
+.flashcard-scene.from-next {
+  animation-name: card-from-next;
+}
+
+.flashcard-scene.from-prev {
+  animation-name: card-from-prev;
+}
+
+/* Las dos caras se apilan en la misma celda; la tarjeta mide lo que la más alta. */
+.flashcard-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+.flashcard-scene.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
 .flashcard {
+  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 400px;
-  margin: 25px 0;
   padding: 30px;
   border: 2px solid #08728d;
   text-align: center;
-  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Reverso: ya está girado, así queda de frente al voltear la tarjeta. */
+.flashcard.back {
+  transform: rotateY(180deg);
+  background: #0a1d36;
+  border-color: #0a9fbd;
 }
 
 .flashcard strong {
@@ -34,6 +77,27 @@
   color: #8192aa;
 }
 
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes card-from-next {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+@keyframes card-from-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+
 /* --- Responsive --------------------------------------------------------- */
 
 @media (max-width: 760px) {
@@ -48,5 +112,16 @@
 
   .flashcard .row-between {
     justify-content: space-between;
+  }
+}
+
+/* Sin animaciones para quien lo pidió en su sistema. */
+@media (prefers-reduced-motion: reduce) {
+  .flashcard-scene {
+    animation: none;
+  }
+
+  .flashcard-inner {
+    transition: none;
   }
 }
